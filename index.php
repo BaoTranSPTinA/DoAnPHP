@@ -16,10 +16,10 @@
 
         <!-- Header section -->
         <header class="header">
-            <a href="#" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
+            <a href="index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
 
             <nav class="navbar">
-                <a href="#">Home</a>
+                <a href="index.php">Home</a>
                 <a href="#">Shop</a>
                 <a href="#">About</a>
                 <a href="#">Review</a>

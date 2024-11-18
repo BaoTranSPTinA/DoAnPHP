@@ -729,7 +729,7 @@ color: var(--brown)
 }
 
 .contact .row form .inputBox{
-    dispkay: flex;
+    display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
