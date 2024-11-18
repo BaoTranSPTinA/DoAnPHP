@@ -28,7 +28,7 @@
 
 
            $this->set_query($sql);
-           $result = $this->excute_query();
+           $result = $this->execute_query();
            $this->close();
 
 
