@@ -1,21 +1,26 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA_Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cake website design</title>
+        <title>Cake website design</title>-->
 
         <!-- Font Awesome CDN link -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+       <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">-->
 
         <!-- Custom CSS file link -->
-        <link rel="stylesheet" href="public/CSS/style.css">
-    </head>
+        <!--<link rel="stylesheet" href="public/CSS/style.css">
+    </head>-->
+<?php 
+    include "head.php";
+?>
     <body>
-
+    <?php 
+        include "header.php" ;
+    ?>
         <!-- Header section -->
-        <header class="header">
+        <!--<header class="header">
             <a href="index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
 
             <nav class="navbar">
@@ -33,7 +38,7 @@
                 <div id="cart-btn" class="fas fa-shopping-cart"></div>
                 <a href="Model/signin.php"><div id="login-btn" class="fas fa-user"></div></a>
             </div>
-        </header>
+        </header>-->
 
         <!-- Home section -->
         <section class="home" id="home">
@@ -692,8 +697,8 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
 
 
             <!--footer section start-->
-
-         <section class="footer">
+        
+        <!--<section class="footer">
             <div  class="box-container">
                 <div class="box">
                     <h3>quick links</h3>
@@ -726,7 +731,7 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
 
 
             </div>
-         </section>
+         </section>-->
 
 
 
@@ -767,6 +772,8 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
                 slides[index].classList.add('active'); // Show the previous slide
             }
         </script>
-
+    <?php
+		include 'footer.php';
+	?>
     </body>
 </html>

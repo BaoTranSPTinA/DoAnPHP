@@ -292,7 +292,7 @@ section{
 }
 
 .category .box-container{
-    display: gird;
+    display: grid;
     flex-wrap: nowrap;
     display: flex;
     grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
