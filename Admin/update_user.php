@@ -7,33 +7,33 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-}
-.sidebar {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    padding: 48px 0 0;
-    background-color: #F99A9c;
-}
-.sidebar a {
-    color: #ffffff;
-}
-.sidebar a:hover {
-    background-color: #495057;
-}
-.content {
-    margin-left: 250px;
-    padding: 20px;
-}
-.header {
-    height: 60px;
-    background-color: #F99A9c;
-    color: white;
-    padding: 0;
-    text-align: center;
-}
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            padding: 48px 0 0;
+            background-color: #F99A9c;
+        }
+        .sidebar a {
+            color: #ffffff;
+        }
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .header {
+            height: 60px;
+            background-color: #F99A9c;
+            color: white;
+            padding: 0;
+            text-align: center;
+        }
     </style>
 
 </head>
