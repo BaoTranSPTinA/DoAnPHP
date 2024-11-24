@@ -8,7 +8,7 @@
 
         <!-- Font Awesome CDN link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+        
         <!-- Custom CSS file link -->
-        <link rel="stylesheet" href="/DoAnPHP/public/CSS/style.css">
+        <link rel="stylesheet" href="../Public/CSS/style.css">
     </head>

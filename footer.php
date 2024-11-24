@@ -25,7 +25,7 @@
                     <input type="email" placeholder="enter your email address">
                     <input type="submit" value="subscribe" class="btn">
                     </form>
-                    <img src="Uploads/thanhtoan.jpg" class="payments" alt="">
+                    <img src="../Uploads/thanhtoan.jpg" class="payments" alt="">
                 </div>
 
 

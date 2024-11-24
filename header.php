@@ -1,6 +1,6 @@
 <!-- Header section -->
 <header class="header">
-            <a href="index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
+            <a href="../index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
 
             <nav class="navbar">
                 <a href="index.php">Home</a>
@@ -15,6 +15,6 @@
                 <div id="menu-btn" class="fas fa-bars"></div>
                 <div id="search-btn" class="fas fa-search"></div>
                 <div id="cart-btn" class="fas fa-shopping-cart"></div>
-                <a href="Model/signin.php"><div id="login-btn" class="fas fa-user"></div></a>
+                <a href="../Model/signin.php"><div id="login-btn" class="fas fa-user"></div></a>
             </div>
         </header>
