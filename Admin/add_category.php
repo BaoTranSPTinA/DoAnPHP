@@ -10,14 +10,10 @@
             include "../Public/CSS/style_add.css";
         ?>
     </style>
-        <div class="container mt-4">
-            <h2 class="text-center">Welcome to the Admin Dashboard!</h2>
-            <p class="text-center">This is your central hub for managing the application.</p>
-
-            <div class="container mt-5 form-container">
-                <h2 class="text-center title">Thêm danh mục</h2>
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
+    <div class="content">
+        <div class="container mt-5">
+            <div class="form-container">
+                <h2 class="title">Thêm danh mục</h2>
                         <form action="../controller/c_add_category.php" method="POST" enctype="multipart/form-data">
                             <div class="mb-4">
                                 <label for="Category_Name" class="form-label">Tên danh mục</label>

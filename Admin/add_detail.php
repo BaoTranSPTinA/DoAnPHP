@@ -12,12 +12,9 @@
     </style>
 
     <!-- Content -->
-    <div class="content"> <!-- Thêm khoảng cách đệm -->
-    <div class="container mt-4">
+    <div class="content">
         <div class="container mt-5 form-container">
-            <h2 class="title text-center">Thêm Chi tiết</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-10 col-xl-8">
+            <h2 class="title">Thêm chi tiết</h2>
                     <form action="../controller/c_add_detail.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-4">
                             <label for="oid" class="form-label">Mã hóa đơn</label>
@@ -34,11 +31,8 @@
                         <button type="submit" class="btn btn-primary btn-block">Thêm</button>
                     </form>
                     <p class="message text-center mt-4">Don't have an account? <a href="#">Sign up</a></p>
-                </div>
-            </div>
         </div>
     </div>
-</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <?php 
