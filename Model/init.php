@@ -16,6 +16,7 @@ class initDatabaseUser extends Database  {
             Email VARCHAR(100) NOT NULL,
             Phone_Number VARCHAR(30) NOT NULL UNIQUE,
             Address VARCHAR(100) NOT NULL,
+            Role TINYINT(1) NOT NULL DEFAULT 0,
             create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
             )";
 
@@ -34,6 +35,33 @@ class initDatabaseUser extends Database  {
 
 $myinit = new initDatabaseUser();
 $myinit->create_structure();
+
+/*----------Tao bang UserInformation ------------*/
+class initDatabaseUserInfo extends Database {
+
+    public function create_structure()
+    {
+        $sql = "CREATE TABLE IF NOT EXISTS UserInformation (
+            Info_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            Customer_ID INT(6) UNSIGNED NOT NULL,
+            Address VARCHAR(255) NOT NULL,
+            DateOfBirth DATE NOT NULL,
+            Gender ENUM('Male', 'Female', 'Other') NOT NULL,
+            create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (Customer_ID) REFERENCES User(Customer_ID)
+        )";
+
+        $this->set_query($sql);
+        $result = $this->execute_query();
+        $this->close();
+
+        echo "INIT COMPLETE";
+    }
+}
+
+$myinit = new initDatabaseUserInfo();
+$myinit->create_structure();
+
 /*----------Tao bang Category ------------*/
 class initDatabaseCategory extends Database  {
 
@@ -80,7 +108,6 @@ class initDatabaseProduct extends Database  {
             Price FLOAT NOT NULL,
             Stock_Quantity INT NOT NULL,
             create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
             FOREIGN KEY (Category_ID) REFERENCES Category(Category_ID)
             )";
 
