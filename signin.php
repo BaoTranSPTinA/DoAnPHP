@@ -12,7 +12,7 @@
     <label for="UserName">Tên Username:  </label>
     <input type="text" name="UserName" required><br>
 
-    <label for="Password">Mật khẩu:  </label>
+    <label for="Password">Mật khẩu:  </label> 
     <input type="password" name="Password" required><br>
     <br>
 
