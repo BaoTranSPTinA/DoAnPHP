@@ -36,19 +36,25 @@
 
     public function list_all_user()
     {
-        $sql = "SELECT * FROM user";
+        $sql = "SELECT * FROM user WHERE Role = 'user'";
         $this->set_query($sql);
-        $result = $this->execute_query();
-        $list_user = array();
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result(); 
 
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $list_user[] = $row;
+            $list_user = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $list_user[] = $row;
+                }
             }
+            return $list_user;
+        } else {
+            return []; 
         }
-
-        return $list_user;
     }
+
+
 
    }
 ?>

@@ -4,28 +4,26 @@ session_start();
 
 <!-- Header section for Admin -->
 <header class="header">
-    <a href="../index.php" class="logo"><i class="fas fa-shopping-basket"></i> Admin Dashboard </a>
+    <a href="../index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
 
     <nav class="navbar">
-        <a href="../index.php">Home</a>
+        <a href="index.php">Home</a>
         <a href="#">Shop</a>
         <a href="#about-section">About</a>
         <a href="#">Review</a>
         <a href="#">Blog</a>
         <a href="#about-section1">Contact</a>
 
-        <?php if (isset($_SESSION['Role']) && $_SESSION['Role'] == 1) : ?>
-            <div class="dropdown">
-                <a href="#" class="dropbtn">Dashboard</a>
-                <div class="dropdown-content">
-                    <a href="#">Manage Users</a>
-                    <a href="#">Manage Products</a>
-                    <a href="#">Manage Orders</a>
-                    <a href="#">Manage Categories</a>
-                    <a href="#">Manage Promotions</a>
-                </div>
+        <!-- Dropdown Menu -->
+        <div class="dropdown">
+            <button class="dropdown-btn">Dashboard</button>
+            <div class="dropdown-content">
+                <a href="Admin/list_user.php">Manage Users</a>
+                <a href="Admin/list_product.php">Manage Products</a>
+                <a href="#">Manage Orders</a>
+                <a href="Admin/list_category.php">Manage Categories</a>
             </div>
-        <?php endif; ?>
+        </div>
     </nav>
 
     <div class="icons">
@@ -35,10 +33,113 @@ session_start();
 
         <?php if (isset($_SESSION['username'])) : ?>
             <!-- Hiển thị tên người dùng (admin) nếu đã đăng nhập -->
-            <span class="admin-name" style="font-size: 30px; color: white; margin-left: 20px;"><?php echo $_SESSION['Customer_name']; ?></span>
-            <a href="#"><div id="login-btn" class="fas fa-sign-out-alt"></div></a>
+            <span class="admin-name" style="font-size: 1.8rem; color: white; margin-left: 20px;"><?php echo $_SESSION['Customer_name']; ?></span>
+            <a href="Controller/c_signout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a>
         <?php else : ?>
             <a href="signin.php"><div id="login-btn" class="fas fa-user"></div></a>
         <?php endif; ?>
     </div>
 </header>
+
+<style>
+/* General Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--brown);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #ffffff;
+}
+
+.header .logo i {
+    color: #222;
+    padding-right: .5rem;
+}
+
+.header .navbar {
+    display: flex;
+    align-items: center;
+}
+
+.header .navbar a {
+    font-size: 1.7rem;
+    color: #fff;
+    margin: 0 1rem;
+}
+
+.header .navbar a:hover {
+    color: #222;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    font-size: 1.7rem;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(0, 0, 0);
+    min-width: 250px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-btn {
+    color: black;
+}
+
+/* Icons */
+.header .icons div {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-left: 1.7rem;
+    cursor: pointer;
+}
+
+.header .icons div:hover {
+    color: #222;
+}
+</style>

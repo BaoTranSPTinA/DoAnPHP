@@ -22,8 +22,8 @@ session_start();
 
         <?php if (isset($_SESSION['username'])): ?> 
             <!-- Nếu đã đăng nhập, hiển thị tên người dùng --> 
-            <span><?php echo $_SESSION['Customer_name']; ?></span> 
-            <a href="../Model/logout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a> 
+            <span class="user-name" style="font-size: 1.8rem; color: white; margin-left: 20px;"><?php echo $_SESSION['Customer_name']; ?></span> 
+            <a href="Controller/c_signout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a> 
         <?php else: ?> 
                 <!-- Nếu chưa đăng nhập, hiển thị 2 nút Đăng nhập và Đăng ký --> 
                  <a href="signin.php"><button class="login-btn">Đăng nhập</button></a> 

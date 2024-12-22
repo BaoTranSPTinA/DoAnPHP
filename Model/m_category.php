@@ -32,16 +32,21 @@
     {
         $sql = "SELECT * FROM category";
         $this->set_query($sql);
-        $result = $this->execute_query();
-        $list_category = array();
-
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                $list_category[] = $row;
+        
+        // Kiểm tra xem câu truy vấn có thành công không
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result(); // Lấy kết quả truy vấn
+            
+            $list_category = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $list_category[] = $row;
+                }
             }
+            return $list_category;
+        } else {
+            return [];  // Trả về mảng rỗng nếu câu truy vấn thất bại
         }
-
-        return $list_category;
     }
 
    }

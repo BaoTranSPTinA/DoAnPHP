@@ -15,17 +15,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Role = isset($_POST['Role']) ? $_POST['Role'] : '';
 
     // Kiểm tra nếu các trường bắt buộc không bị bỏ trống
-    if (empty($Customer_Name) || empty($username) || empty($Password) || empty($Email) || empty($Phone_Number) || empty($Address) || empty($DateOfBirth) || empty($Gender) || empty($Role)) {
+    if (empty($Customer_Name) || empty($username) || empty($Password) || empty($Email) || empty($Phone_Number) || empty($Address) || empty($DateOfBirth) || empty($Gender)) {
         echo "Vui lòng điền đầy đủ thông tin.";
         exit();
     }
 
-    // Mã hóa mật khẩu
-    $hashedPassword = password_hash($Password, PASSWORD_DEFAULT);
-
+    
     // Kết nối cơ sở dữ liệu
     $db = new Database();
-    
+
     // Chèn dữ liệu vào bảng User
     $sql = "INSERT INTO User (Customer_Name, username, Password, Email, Phone_Number, Address, Role) 
             VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -35,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Lỗi khi chuẩn bị câu lệnh SQL: " . $db->conn->error);
     }
 
-    $stmt->bind_param("ssssssi", $Customer_Name, $username, $hashedPassword, $Email, $Phone_Number, $Address, $Role);
-    
+    $stmt->bind_param("sssssss", $Customer_Name, $username, $Password, $Email, $Phone_Number, $Address, $Role);
+
     if (!$stmt->execute()) {
         echo "Lỗi khi thực thi câu lệnh SQL: " . $stmt->error;
         exit();
@@ -55,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $stmtInfo->bind_param("isss", $Customer_ID, $Address, $DateOfBirth, $Gender);
-    
+
     if (!$stmtInfo->execute()) {
         echo "Lỗi khi thực thi câu lệnh SQL: " . $stmtInfo->error;
         exit();
