@@ -8,12 +8,10 @@
         $price = $_POST['Price'];
         $StockQuantity = $_POST['StockQuantity'];
 
-      
-
-
-        
-
-
         $new_building = new Product();
         $new_building->create_1_product($ProductName, $CategoryID, $description, $price, $StockQuantity);
 ?>
+
+<script>
+        window.close();
+</script>

@@ -13,3 +13,7 @@
         $new_building = new Product();
         $new_building->update_1_product($id, $ProductName, $CategoryID, $description, $price, $StockQuantity);
 ?>
+
+<script>
+        window.close();
+</script>

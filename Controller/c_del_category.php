@@ -9,3 +9,7 @@
         $new_building = new Category();
         $new_building->delete_1_category($CategoryName);
 ?>
+
+<script>
+        window.close();
+</script>

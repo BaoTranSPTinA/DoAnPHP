@@ -31,6 +31,21 @@
         $this->execute_query();
         $this->close();
     }
+    public function list_all_bill()
+    {
+        $sql = "SELECT * FROM bill";
+        $this->set_query($sql);
+        $result = $this->execute_query();
+        $list_bill = array();
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $list_bill[] = $row;
+            }
+        }
+
+        return $list_bill;
+    }
 
    }
 ?>
