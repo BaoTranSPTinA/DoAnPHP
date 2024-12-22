@@ -14,3 +14,7 @@
         $new_building = new User();
         $new_building->Update_1_User($id, $CustomerName, $Username, $Password, $Email, $PhoneNumber, $Address);
 ?>
+
+<script>
+        window.close();
+</script>

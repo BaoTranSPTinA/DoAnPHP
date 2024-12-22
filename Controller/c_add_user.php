@@ -12,4 +12,12 @@
 
         $new_building = new User();
         $new_building->create_1_User($CustomerName, $Username, $Password, $Email, $PhoneNumber, $Address);
+
+
+
 ?>
+
+
+<script>
+        window.close();
+</script>

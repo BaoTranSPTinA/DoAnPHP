@@ -34,5 +34,21 @@
         $this->close();
     }
 
+    public function list_all_user()
+    {
+        $sql = "SELECT * FROM user";
+        $this->set_query($sql);
+        $result = $this->execute_query();
+        $list_user = array();
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $list_user[] = $row;
+            }
+        }
+
+        return $list_user;
+    }
+
    }
 ?>

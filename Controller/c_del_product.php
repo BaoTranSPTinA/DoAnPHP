@@ -7,3 +7,7 @@
         $new_building = new Product();
         $new_building->delete_1_Product($ProductName);
 ?>
+
+<script>
+        window.close();
+</script>

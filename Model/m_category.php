@@ -28,5 +28,21 @@
         $this->close();
     }
 
+    public function list_all_category()
+    {
+        $sql = "SELECT * FROM category";
+        $this->set_query($sql);
+        $result = $this->execute_query();
+        $list_category = array();
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $list_category[] = $row;
+            }
+        }
+
+        return $list_category;
+    }
+
    }
 ?>

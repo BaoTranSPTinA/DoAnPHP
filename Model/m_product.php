@@ -33,5 +33,21 @@
         $this->close();
     }
 
+    public function list_all_product()
+    {
+        $sql = "SELECT * FROM product";
+        $this->set_query($sql);
+        $result = $this->execute_query();
+        $list_product = array();
+
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                $list_product[] = $row;
+            }
+        }
+
+        return $list_product;
+    }
+
    }
 ?>

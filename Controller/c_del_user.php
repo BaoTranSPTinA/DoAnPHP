@@ -6,4 +6,12 @@
     
         $new_building = new User();
         $new_building->delete_1_User($CustomerName);
+        
+
+
+ 
 ?>
+
+<script>
+        window.close();
+</script>

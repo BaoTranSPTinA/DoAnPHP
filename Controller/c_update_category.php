@@ -10,3 +10,7 @@
         $new_building = new Category();
         $new_building->update_1_category($id, $CategoryName);
 ?>
+
+<script>
+        window.close();
+</script>
