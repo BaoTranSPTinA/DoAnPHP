@@ -7,7 +7,7 @@
     ?>
     <style>
         <?php 
-            include "../Public/CSS/style_add.css";
+            include "Public/CSS/style_add.css";
         ?>
     </style>
    
