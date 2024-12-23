@@ -168,203 +168,49 @@
 
 
           <!-- products section -->
-
-          <section class="products">
-            
-            <h1 class="title"> Our <span>Products</span> <a href="#">View All >> </a> </h1>
-    
-            <div class="box-container">
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-        
-
-                <div class="img">
-                    <img src="Uploads/anh23.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>berries citrus fruits apples</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+<?php 
+    require('Controller/c_list_product_home.php');
+    $c_product = new c_product();
+    $list_product = $c_product->list_all_product();
+?>
+<section class="products">
+    <h1 class="title"> Our <span>Products</span> <a href="#">View All >> </a> </h1>
+    <div class="box-container">
+        <?php foreach ($list_product as $product): ?>
+        <div class="box">
+            <div class="icons">
+                <a href="#" class="fas fa-shopping-cart"></a>
+                <a href="#" class="fas fa-heart"></a>
+                <a href="#" class="fas fa-eye"></a>
+            </div>
+            <div class="img">
+                <?php
+                    // Kiểm tra nếu avatar tồn tại và sử dụng đường dẫn đúng
+                    $avatar_path = substr($product['avatar'], 3); // Cắt bỏ '../' ở đầu đường dẫn
+                    if (file_exists($avatar_path)) {
+                        echo "<img style='height: 150px' src='$avatar_path' alt='Product Image'>";
+                    } else {
+                        echo "<img style='height: 150px' src='../Uploads/default_image.jpg' alt='Product Image'>";
+                    }
+                ?>
+            </div>
+            <div class="content">
+                <h3><?php echo htmlspecialchars($product['Product_Name']); ?></h3>
+                <div class="price"><?php echo number_format($product['Price'], 0, ',', '.'); ?> VND</div>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
                 </div>
             </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-
-
-                <div class="img">
-                    <img src="Uploads/anh15.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>resh mellow sp color ripe</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-        
-
-                <div class="img">
-                    <img src="Uploads/anh16.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>rose color sparkel cake</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-            
-
-                <div class="img">
-                    <img src="Uploads/anh17.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>strawberry nutella cake</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-
-                <div class="img">
-                    <img src="Uploads/anh18.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>green bread spar cake</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-
-                <div class="img">
-                    <img src="Uploads/anh19.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>red berries chocolate cake</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-
-                <div class="img">
-                    <img src="Uploads/anh20.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>strawberry red spar cake</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-            <div class="box">
-                <div class="icons">
-                    <a a href="#" class="fas fa-shopping-cart"></a>
-                    <a a href="#" class="fas fa-heart"></a>
-                    <a a href="#" class="fas fa-eye"></a>
-                </div>
-
-                <div class="img">
-                    <img src="Uploads/anh21.jpg" alt="">
-                </div>
-                <div class="content">
-                    <h3>dark chocolate nutella cake</h3>
-                    <div class="price">$19.99</div>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
         </div>
-        </section>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+
 
 
         <div id="about-section" class="heading"> 

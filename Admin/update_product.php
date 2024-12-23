@@ -107,6 +107,10 @@ button:hover {
                             <label for="StockQuantity" class="form-label">Số lượng</label>
                             <input type="number" id="StockQuantity" name="StockQuantity" class="form-control" required>
                         </div>
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label">Hình ảnh</label>
+                            <input type="file" id="avatar" name="avatar" class="form-control" accept="image/*" required>
+                        </div>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </form>
                 </div>

@@ -3,14 +3,18 @@ require_once("database.php");
 
 class Product extends Database
 {
-    public function create_1_product($ProductName, $CategoryID, $description, $price, $StockQuantity)
+    public function create_1_product($ProductName, $CategoryID, $description, $price, $StockQuantity, $avatar_path)
     {
-        $sql = "INSERT INTO Product (Product_Name, Category_ID, Description, Price, Stock_Quantity) 
-                VALUES ('$ProductName', $CategoryID, '$description', $price, $StockQuantity)";
+        $avatar_path = "../Uploads/" . basename($avatar_path);
+
+        $sql = "INSERT INTO Product (Product_Name, Category_ID, avatar, Description, Price, Stock_Quantity) 
+                VALUES ('$ProductName', '$CategoryID', '$avatar_path', '$description', '$price', '$StockQuantity')";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+        $this->close(); 
     }
+
+
 
     public function delete_1_product($ProductName)
     {
@@ -20,14 +24,22 @@ class Product extends Database
         $this->close();
     }
 
-    public function update_1_product($id, $ProductName, $CategoryID, $description, $price, $StockQuantity)
+    public function update_1_product($id, $ProductName, $CategoryID, $description, $price, $StockQuantity, $avatar_path = NULL)
     {
+        // Cập nhật thông tin sản phẩm
         $sql = "UPDATE Product SET Product_Name = '$ProductName', 
-                                   Category_ID = '$CategoryID', 
-                                   Description = '$description', 
-                                   Price = '$price', 
-                                   Stock_Quantity = '$StockQuantity'
-                WHERE Product_ID = '$id'";
+                                Category_ID = '$CategoryID', 
+                                Description = '$description', 
+                                Price = '$price', 
+                                Stock_Quantity = '$StockQuantity'";
+
+        // Nếu có hình ảnh, thêm phần cập nhật avatar
+        if ($avatar_path) {
+            $sql .= ", avatar = '$avatar_path'";
+        }
+
+        $sql .= " WHERE Product_ID = '$id'";
+
         $this->set_query($sql);
         $this->execute_query();
         $this->close();
@@ -35,7 +47,7 @@ class Product extends Database
 
     public function getProductData($productID)
     {
-        $sql = "SELECT * FROM products WHERE ProductID = $productID";    
+        $sql = "SELECT * FROM Product WHERE Product_ID = $productID";    
         $this->set_query($sql);
         
         if ($this->execute_query()) {
@@ -47,7 +59,7 @@ class Product extends Database
 
     public function list_all_product()
     {
-        $sql = "SELECT * FROM product";
+        $sql = "SELECT * FROM Product";
         $this->set_query($sql);
         
         // Kiểm tra xem câu truy vấn có thành công không

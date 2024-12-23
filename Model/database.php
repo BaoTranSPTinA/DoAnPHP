@@ -59,6 +59,15 @@ class Database
         return $this->conn->insert_id;
     }
 
+    // Lấy lỗi cuối cùng trong kết nối hoặc câu lệnh SQL
+    public function get_last_error()
+    {
+        if ($this->stmt) {
+            return $this->stmt->error;
+        }
+        return $this->conn->error;
+    }
+
     // Mở giao dịch (transaction)
     public function begin_transaction()
     {

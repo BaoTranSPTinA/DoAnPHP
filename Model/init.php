@@ -101,9 +101,9 @@ class initDatabaseProduct extends Database  {
 
         $sql = "CREATE TABLE IF NOT EXISTS Product (
             Product_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            avatar VARCHAR(500),
             Product_Name VARCHAR(100) NOT NULL,
             Category_ID INT(6) UNSIGNED NOT NULL,
+            avatar VARCHAR(500),
             Description VARCHAR(255), 
             Price FLOAT NOT NULL,
             Stock_Quantity INT NOT NULL,

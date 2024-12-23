@@ -75,34 +75,45 @@ button:hover {
 }
 </style>
 
-        <div class="content">
-            <div class="container mt-5 form-container">
-                <h2 class="title">Thêm sản phẩm</h2>
-                <form action="../controller/c_add_product.php" method="POST" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="ProductName" class="form-label">Tên sản phẩm</label>
-                        <input type="text" id="ProductName" name="ProductName" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="CategoryID" class="form-label">Mã danh mục</label>
-                        <input type="number" id="CategoryID" name="CategoryID" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Description" class="form-label">Mô tả</label>
-                        <input type="text" id="Description" name="Description" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="Price" class="form-label">Giá</label>
-                        <input type="number" id="Price" name="Price" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="StockQuantity" class="form-label">Số lượng</label>
-                        <input type="number" id="StockQuantity" name="StockQuantity" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Thêm</button>
-                </form>
-            </div>
+    <div class="content">
+            <?php
+                require ('../controller/c_list_user.php');
+                $c_user = new C_user(); 
+                $list_user = $c_user->list_all_user();
+
+            ?>
+        <div class="container mt-5 form-container">
+            <h2 class="title">Thêm sản phẩm</h2>
+            <form action="../controller/c_add_product.php" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="ProductName" class="form-label">Tên sản phẩm</label>
+                    <input type="text" id="ProductName" name="ProductName" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="CategoryID" class="form-label">Mã danh mục</label>
+                    <input type="number" id="CategoryID" name="CategoryID" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Description" class="form-label">Mô tả</label>
+                    <textarea id="Description" name="Description" class="form-control" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="Price" class="form-label">Giá</label>
+                    <input type="number" id="Price" name="Price" class="form-control" step="0.01" required>
+                </div>
+                <div class="mb-3">
+                    <label for="StockQuantity" class="form-label">Số lượng</label>
+                    <input type="number" id="StockQuantity" name="StockQuantity" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="avatar" class="form-label">Hình ảnh</label>
+                    <input type="file" id="avatar" name="avatar" class="form-control" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Thêm</button>
+            </form>
         </div>
+    </div>
+
 
 
 

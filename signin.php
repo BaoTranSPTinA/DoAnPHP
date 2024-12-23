@@ -17,6 +17,7 @@
     <br>
 
     <button type="submit">Đăng nhập</button>
+    <p class="message">Don't have an account? <a href="signup.php">Sign up</a></p>
 </form>
 </body>
 </html>
