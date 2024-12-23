@@ -75,13 +75,7 @@ button:hover {
 
 </style>
 <body>
-    <?php 
-        include "../header.php";
-    ?>
-    <style>
-        <?php 
-            include "../Public/CSS/style_add.css";
-        ?>
+
     </style>
    
 

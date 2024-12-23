@@ -36,6 +36,9 @@
         $sql = "SELECT * FROM bill";
         $this->set_query($sql);
         $result = $this->execute_query();
+        if ($result === false) {
+            die("Lỗi truy vấn: " . $this->get_last_error()); // In ra lỗi nếu có
+        }
         $list_bill = array();
 
         if($result->num_rows > 0){

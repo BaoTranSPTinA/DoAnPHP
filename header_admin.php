@@ -20,7 +20,7 @@ session_start();
             <div class="dropdown-content">
                 <a href="Admin/list_user.php">Manage Users</a>
                 <a href="Admin/list_product.php">Manage Products</a>
-                <a href="#">Manage Orders</a>
+                <a href="Admin/list_bill.php">Manage Orders</a>
                 <a href="Admin/list_category.php">Manage Categories</a>
             </div>
         </div>

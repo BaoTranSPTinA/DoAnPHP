@@ -11,6 +11,7 @@ background-color:#4c1d0f;
 }
 .content {
     margin-left: 250px;
+    width:100%;
     padding: 20px;
 }
 .header {
@@ -21,7 +22,9 @@ background-color:#4c1d0f;
     text-align: center;
 }
 
+
 table {
+    margin-left: -40px;
     width: 100%;
     border-collapse: collapse;
 }
@@ -30,11 +33,12 @@ th, td, tr {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
-    color: white;
+    color: black;
+    border-color: #4c1d0f;
 }
 
 button {
-    background-color:#CD853F;
+    background-color:#4c1d0f;
     color: white;
     border-radius: 8px;
     border: 1px solid black;
@@ -47,7 +51,7 @@ button {
 }
 
 button:hover {
-    background-color:#4c1d0f;
+    background-color:#CD853F;
     font-size: 16px;
     color: white;
 }
@@ -57,13 +61,14 @@ button:hover {
 <body>
 
 
-   
-   
+<?php
+    require("menu_admin.php");
+?>
 
-
-    <div class="content">
+   
+<div class="content">
         <div class="header">
-            <h1><center>DANH SÁCH hÓA ĐƠN</center></h1>
+            <h1><center>DANH SÁCH HOÁ ĐƠN</center></h1>
         </div>
         <div class="container mt-4">
         
