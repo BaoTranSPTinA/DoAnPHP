@@ -6,12 +6,6 @@
         $OrderID = $_POST['oid'];
         $ProductID = $_POST['pid'];
         $Quantity = $_POST['quantity'];
-       
-
-      
-
-
-        
 
 
         $new_building = new Detail();
