@@ -80,6 +80,7 @@
                 </div>
 
                 <div class="slide">
+                    
                     <div class="content"> 
                         <span>Have a Cake-A-Delicious</span>
                         <h3>Upto 50% Off</h3>
