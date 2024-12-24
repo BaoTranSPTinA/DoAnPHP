@@ -174,7 +174,7 @@
     $list_product = $c_product->list_all_product();
 ?>
 <section class="products">
-    <h1 class="title"> Our <span>Products</span> <a href="#">View All >> </a> </h1>
+    <h1 class="title"> Our <span>Products</span> <a href="view_all_product.php">View All >> </a> </h1>
     <div class="box-container">
         <?php foreach ($list_product as $product): ?>
         <div class="box">
@@ -185,8 +185,7 @@
             </div>
             <div class="img">
                 <?php
-                    // Kiểm tra nếu avatar tồn tại và sử dụng đường dẫn đúng
-                    $avatar_path = substr($product['avatar'], 3); // Cắt bỏ '../' ở đầu đường dẫn
+                    $avatar_path = substr($product['avatar'], 3); 
                     if (file_exists($avatar_path)) {
                         echo "<img style='height: 150px' src='$avatar_path' alt='Product Image'>";
                     } else {

@@ -57,6 +57,28 @@ class Product extends Database
         }
     }
 
+    public function get_products_by_category($CategoryID)
+    {
+        $sql = "SELECT * FROM Product WHERE Category_ID = '$CategoryID'";
+        $this->set_query($sql);
+
+        // Kiểm tra xem câu truy vấn có thành công không
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result(); // Lấy kết quả truy vấn
+
+            $products = array();
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    $products[] = $row;
+                }
+            }
+            return $products;
+        } else {
+            return []; // Trả về mảng rỗng nếu câu truy vấn thất bại
+        }
+    }
+
+
     public function list_all_product()
     {
         $sql = "SELECT * FROM Product";

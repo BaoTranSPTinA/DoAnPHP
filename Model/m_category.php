@@ -30,7 +30,7 @@
 
     public function list_all_category()
     {
-        $sql = "SELECT * FROM category";
+        $sql = "SELECT * FROM Category";
         $this->set_query($sql);
         
         // Kiểm tra xem câu truy vấn có thành công không

@@ -1,5 +1,5 @@
 <?php
-    require('Model/m_product.php');
+    require_once('Model/m_product.php');
 
     class c_product {
         public function list_all_product()

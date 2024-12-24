@@ -4,7 +4,7 @@ session_start();
 
 <!-- Header section for Admin -->
 <header class="header">
-    <a href="../index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
+    <a href="index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
 
     <nav class="navbar">
         <a href="index.php">Home</a>
@@ -30,7 +30,7 @@ session_start();
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <div id="cart-btn" class="fas fa-shopping-cart"></div>
+        <a href="cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
         <?php if (isset($_SESSION['username'])) : ?>
             <!-- Hiển thị tên người dùng (admin) nếu đã đăng nhập -->
