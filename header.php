@@ -18,7 +18,7 @@ session_start();
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <div id="cart-btn" class="fas fa-shopping-cart"></div>
+        <a href="cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
         <?php if (isset($_SESSION['username'])): ?> 
             <!-- Nếu đã đăng nhập, hiển thị tên người dùng --> 
