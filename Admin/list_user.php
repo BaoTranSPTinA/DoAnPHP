@@ -16,7 +16,7 @@ background-color:#4c1d0f;
 }
 .header {
     height: 60px;
-    background-color: #4c1d0f;
+    background-color: #A13C1E;
     color: white;
     padding: 0;
     text-align: center;
@@ -33,12 +33,12 @@ th, td, tr {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
-    color: black;
-    border-color: #4c1d0f;
+    color: #A13C1E;
+    border-color: black;
 }
 
 button {
-    background-color:#4c1d0f;
+    background-color:#A13C1E;
     color: white;
     border-radius: 8px;
     border: 1px solid black;

@@ -6,48 +6,55 @@
     <title>Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            background-color:#4c1d0f;
-        }
-        .content {
-            margin-left: 250px;
-            width: 100%;
-            padding: 20px;
-        }
-        .header {
-            height: 60px;
-            background-color: #4c1d0f;
-            color: white;
-            padding: 0;
-            text-align: center;
-        }
-        table {
-            margin-left: -40px;
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td, tr {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            color: black;
-            border-color: #4c1d0f;
-        }
-        button {
-            background-color:#4c1d0f;
-            color: white;
-            border-radius: 8px;
-            border: 1px solid black;
-            font-size: 16px;
-            padding: 5px 10px;
-            position: relative;
-            left: 900px;
-        }
-        button:hover {
-            background-color:#CD853F;
-            font-size: 16px;
-            color: white;
-        }
+body {
+background-color:#4c1d0f;
+}
+.content {
+    margin-left: 250px;
+    width:100%;
+    padding: 20px;
+}
+.header {
+    height: 60px;
+    background-color: #A13C1E;
+    color: white;
+    padding: 0;
+    text-align: center;
+}
+
+
+table {
+    margin-left: -40px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td, tr {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    color: #A13C1E;
+    border-color: black;
+}
+
+button {
+    background-color:#A13C1E;
+    color: white;
+    border-radius: 8px;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 5px 10px;
+    position: relative;
+    left: 900px;
+    
+    
+}
+
+button:hover {
+    background-color:#CD853F;
+    font-size: 16px;
+    color: white;
+}
     </style>
 </head>
 <body>
@@ -104,7 +111,7 @@
                             <td>
                                 <?php
                                     $avatar_path = htmlspecialchars($product['avatar']);
-                                    echo "<p>Đường dẫn ảnh: $avatar_path</p>"; 
+                                    //echo "<p>Đường dẫn ảnh: $avatar_path</p>"; 
                                     if (file_exists($avatar_path)) {
                                         echo "<img style='height:75px;' src='$avatar_path' alt='Product Image'>";
                                     } else {

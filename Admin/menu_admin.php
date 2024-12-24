@@ -16,7 +16,7 @@
 
 .menu {
     width: 300px;
-    background-color: #4c1d0f;
+    background-color: #A13C1E;
     color: #ffffff;
     height: 100vh;
     padding: 20px;
