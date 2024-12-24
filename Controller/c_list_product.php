@@ -8,6 +8,7 @@
             $list_product = $product->list_all_product();
             return $list_product;
         }
+
     }
 
 ?>

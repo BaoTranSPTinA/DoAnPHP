@@ -78,6 +78,11 @@ class Product extends Database
         }
     }
 
+    public function get_product_by_id($id) {
+        $query = "SELECT * FROM Product WHERE Product_ID = $id";
+        $result = $this->conn->query($query);
+        return $result->fetch_assoc();
+    }
 
     public function list_all_product()
     {

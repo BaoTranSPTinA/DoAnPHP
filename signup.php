@@ -53,13 +53,13 @@
             </select><br>
         </div>
 
-        <div>
+        <!--<div>
             <label for="Role">Vai trò: </label>
             <select name="Role" id="Role" required>
                 <option value="0">User</option>
                 <option value="1">Admin</option>
             </select><br>
-        </div>
+        </div>-->
 
         <div>
             <button type="submit">Đăng ký</button>

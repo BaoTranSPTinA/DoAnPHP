@@ -171,8 +171,8 @@
           <!-- products section -->
         <?php 
             require('Controller/c_list_product_home.php');
-            $c_product = new c_product();
-            $list_product = $c_product->list_all_product();
+            $product = new c_product();
+            $list_product = $product->list_all_product();
         ?>
         <section class="products">
             <h1 class="title"> Our <span>Products</span> <a href="view_all_product.php">View All >> </a> </h1>
@@ -182,7 +182,7 @@
                     <div class="icons">
                         <a href="#" class="fas fa-shopping-cart"></a>
                         <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
+                        <a href="product_detail.php?id=<?php echo $product['Product_ID']; ?>" class="fas fa-eye"></a>
                     </div>
                     <div class="img">
                         <?php
