@@ -1,15 +1,29 @@
 <?php
 session_start();
+require_once('Model/m_category.php');  // Include category model
+
+$category = new Category();  // Instantiate Category model
+$categories = $category->list_all_category();  // Get all categories from the database
 ?>
 
 <!-- Header section for Admin -->
 <header class="header">
-    <a href="index.php" class="logo"><i class="fas fa-shopping-basket"></i> Cake </a>
+    <a href="index.php" class="logo"><i class="fas fa-shopping-basket"></i> Admin Dashboard </a>
 
     <nav class="navbar">
         <a href="index.php">Home</a>
+        
+        <!-- Category Dropdown Menu -->
+        <div class="dropdown">
+            <button class="dropdown-btn">Category</button>
+            <div class="dropdown-content">
+                <?php foreach ($categories as $category): ?>
+                    <a href="view_category.php?Category=<?php echo $category['Category_ID']; ?>"><?php echo htmlspecialchars($category['Category_Name']); ?></a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
         <a href="#">Shop</a>
-        <a href="#about-section">About</a>
         <a href="#">Review</a>
         <a href="#">Blog</a>
         <a href="#about-section1">Contact</a>
@@ -22,7 +36,6 @@ session_start();
                 <a href="Admin/list_category.php">Manage Categories</a>
                 <a href="Admin/list_product.php">Manage Products</a>
                 <a href="Admin/list_bill.php">Manage Orders</a>
-
             </div>
         </div>
     </nav>
@@ -33,7 +46,6 @@ session_start();
         <a href="cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
         <?php if (isset($_SESSION['username'])) : ?>
-            <!-- Hiển thị tên người dùng (admin) nếu đã đăng nhập -->
             <span class="admin-name" style="font-size: 1.8rem; color: white; margin-left: 20px;"><?php echo $_SESSION['Customer_name']; ?></span>
             <a href="Controller/c_signout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a>
         <?php else : ?>
@@ -97,7 +109,6 @@ session_start();
     color: white;
     cursor: pointer;
     padding: 10px 20px;
-
 }
 
 .dropdown-content {
@@ -121,7 +132,6 @@ session_start();
 
 .dropdown-content a:hover {
     background-color: #ddd;
-    
 }
 
 .dropdown:hover .dropdown-content {

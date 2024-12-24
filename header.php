@@ -1,5 +1,9 @@
 <?php
 session_start();
+require_once('Model/m_category.php');  // Include category model
+
+$category = new Category();  // Instantiate Category model
+$categories = $category->list_all_category();  // Get all categories from the database
 ?>
 
 <!-- Header section -->
@@ -9,7 +13,17 @@ session_start();
     <nav class="navbar">
         <a href="index.php">Home</a>
         <a href="#">Shop</a>
-        <a href="#about-section">About</a>
+
+        <!-- Category Dropdown Menu -->
+        <div class="dropdown">
+            <button class="dropdown-btn">Category</button>
+            <div class="dropdown-content">
+                <?php foreach ($categories as $category): ?>
+                    <a href="view_category.php?Category=<?php echo $category['Category_ID']; ?>"><?php echo htmlspecialchars($category['Category_Name']); ?></a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
         <a href="#">Review</a>
         <a href="#">Blog</a>
         <a href="#about-section1">Contact</a>
@@ -32,3 +46,104 @@ session_start();
     </div>
     
 </header>
+
+<style>
+/* General Header Styles */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--brown);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color: #ffffff;
+}
+
+.header .logo i {
+    color: #222;
+    padding-right: .5rem;
+}
+
+.header .navbar {
+    display: flex;
+    align-items: center;
+}
+
+.header .navbar a {
+    font-size: 1.7rem;
+    color: #fff;
+    margin: 0 1rem;
+}
+
+.header .navbar a:hover {
+    color: #222;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    font-size: 1.7rem;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgb(0, 0, 0);
+    min-width: 250px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropdown-btn {
+    color: black;
+}
+
+/* Icons */
+.header .icons div {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-left: 1.7rem;
+    cursor: pointer;
+}
+
+.header .icons div:hover {
+    color: #222;
+}
+</style>

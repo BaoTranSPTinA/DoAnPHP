@@ -60,7 +60,7 @@
                 <div class="slide active">
                     <div class="content">
                         <span>Have a Cake-A-Delicious</span>
-                        <h3>Upto 50% Off</h3>
+                        <h3>Up to 50% Off</h3>
                         <a href="#" class="btn">Shop Now</a>
                     </div>
                     <div class="img">
@@ -96,7 +96,7 @@
         </section>
 
 
-        <section class="banner-container">
+        <!--<section class="banner-container">
 
             <div class="banner">
                 <img src="Uploads/anh7.jpg" alt="">
@@ -124,7 +124,7 @@
                 <a href="#" class="btn">Shop Now</a>
             </div>
             </div>
-         </section>
+         </section>-->
 
 
         <!-- category start -->
@@ -212,7 +212,7 @@
 
 
 
-        <div id="about-section" class="heading"> 
+        <!--<div id="about-section" class="heading"> 
             <h1>About Us</h1>
         </div>
 
@@ -236,7 +236,7 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
 
                 <a href="#" class="btn">Read More</a>
             </div>
-         </section>
+         </section>-->
         
          <section class="gallery">
             <h1 class="title"> Our <span>Gallery</span> <a href="#">View All >> </a> </h1>

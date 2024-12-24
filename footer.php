@@ -2,7 +2,7 @@
             <div  class="box-container">
                 <div class="box">
                     <h3>quick links</h3>
-                    <a href="#"> <i class="fas fa-arrow-right"></i> Home</a>
+                    <a href="index.php"> <i class="fas fa-arrow-right"></i> Home</a>
                     <a href="#"> <i class="fas fa-arrow-right"></i> Shop</a>
                     <a href="#"> <i class="fas fa-arrow-right"></i> About</a>
                     <a href="#"> <i class="fas fa-arrow-right"></i> Review</a>
