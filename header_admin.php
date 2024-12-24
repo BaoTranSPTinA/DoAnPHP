@@ -45,11 +45,14 @@ $categories = $category->list_all_category();  // Get all categories from the da
         <div id="search-btn" class="fas fa-search"></div>
         <a href="cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
-        <?php if (isset($_SESSION['username'])) : ?>
-            <span class="admin-name" style="font-size: 1.8rem; color: white; margin-left: 20px;"><?php echo $_SESSION['Customer_name']; ?></span>
-            <a href="Controller/c_signout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a>
-        <?php else : ?>
-            <a href="signin.php"><div id="login-btn" class="fas fa-user"></div></a>
+        <?php if (isset($_SESSION['username'])): ?> 
+            <!-- Nếu đã đăng nhập, hiển thị tên người dùng và liên kết tới trang thông tin cá nhân -->
+            <a href="profile.php">
+                <span class="user-name" style="font-size: 1.8rem; color: white; margin-left: 20px;">
+                    <?php echo $_SESSION['Customer_name']; ?>
+                </span>
+            </a>
+            <a href="Controller/c_signout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a> 
         <?php endif; ?>
     </div>
 </header>

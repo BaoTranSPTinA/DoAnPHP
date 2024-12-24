@@ -135,7 +135,7 @@
          
          <section class="category">
 
-        <h1 class="title"> Our <span>Category</span> <a href="#">View All >> </a> </h1>
+        <!--<h1 class="title"> Our <span>Category</span> <a href="#">View All >> </a> </h1>
 
         <div class="box-container">
 
@@ -164,51 +164,51 @@
                 <h3>wheat</h3>
             </a>
             </div>
-          </section>
+          </section>-->
 
 
 
           <!-- products section -->
-<?php 
-    require('Controller/c_list_product_home.php');
-    $c_product = new c_product();
-    $list_product = $c_product->list_all_product();
-?>
-<section class="products">
-    <h1 class="title"> Our <span>Products</span> <a href="view_all_product.php">View All >> </a> </h1>
-    <div class="box-container">
-        <?php foreach ($list_product as $product): ?>
-        <div class="box">
-            <div class="icons">
-                <a href="#" class="fas fa-shopping-cart"></a>
-                <a href="#" class="fas fa-heart"></a>
-                <a href="#" class="fas fa-eye"></a>
-            </div>
-            <div class="img">
-                <?php
-                    $avatar_path = substr($product['avatar'], 3); 
-                    if (file_exists($avatar_path)) {
-                        echo "<img style='height: 150px' src='$avatar_path' alt='Product Image'>";
-                    } else {
-                        echo "<img style='height: 150px' src='../Uploads/default_image.jpg' alt='Product Image'>";
-                    }
-                ?>
-            </div>
-            <div class="content">
-                <h3><?php echo htmlspecialchars($product['Product_Name']); ?></h3>
-                <div class="price"><?php echo number_format($product['Price'], 0, ',', '.'); ?> VND</div>
-                <div class="stars">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+        <?php 
+            require('Controller/c_list_product_home.php');
+            $c_product = new c_product();
+            $list_product = $c_product->list_all_product();
+        ?>
+        <section class="products">
+            <h1 class="title"> Our <span>Products</span> <a href="view_all_product.php">View All >> </a> </h1>
+            <div class="box-container">
+                <?php foreach ($list_product as $product): ?>
+                <div class="box">
+                    <div class="icons">
+                        <a href="#" class="fas fa-shopping-cart"></a>
+                        <a href="#" class="fas fa-heart"></a>
+                        <a href="#" class="fas fa-eye"></a>
+                    </div>
+                    <div class="img">
+                        <?php
+                            $avatar_path = substr($product['avatar'], 3); 
+                            if (file_exists($avatar_path)) {
+                                echo "<img style='height: 150px' src='$avatar_path' alt='Product Image'>";
+                            } else {
+                                echo "<img style='height: 150px' src='../Uploads/default_image.jpg' alt='Product Image'>";
+                            }
+                        ?>
+                    </div>
+                    <div class="content">
+                        <h3><?php echo htmlspecialchars($product['Product_Name']); ?></h3>
+                        <div class="price"><?php echo number_format($product['Price'], 0, ',', '.'); ?> VND</div>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
                 </div>
+                <?php endforeach; ?>
             </div>
-        </div>
-        <?php endforeach; ?>
-    </div>
-</section>
+        </section>
 
 
 

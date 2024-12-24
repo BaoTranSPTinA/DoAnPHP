@@ -54,7 +54,28 @@
         }
     }
 
-
-
+    public function get_user_by_id($id) {
+        $sql = "SELECT Customer_ID, Customer_Name, Email, Phone_Number, Address 
+                FROM User 
+                WHERE Customer_ID = '$id'";
+    
+        $this->set_query($sql);
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            return $result->fetch_assoc();
+        } else {
+            return null;
+        }
+    }
+    
+    public function update_user_by_id($id, $CustomerName, $Email, $PhoneNumber, $Address) {
+        $sql = "UPDATE User 
+                SET Customer_Name = '$CustomerName', Email = '$Email', Phone_Number = '$PhoneNumber', Address = '$Address' 
+                WHERE Customer_ID = '$id'";
+    
+        $this->set_query($sql);
+        return $this->execute_query();
+    }
+    
    }
 ?>

@@ -73,8 +73,6 @@ button:hover {
 }
 </style>
 
-
-   
         <div class="content">
             <div class="container mt-5">
                 <div class="form-container">
