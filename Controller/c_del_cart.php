@@ -1,24 +1,28 @@
 <?php
 session_start();
-require_once("../Model/database.php");
+require_once("../Model/database.php"); 
+require_once("../Model/m_cart.php");
 
+// Kiểm tra đăng nhập và dữ liệu gửi lên
 if (!isset($_SESSION['Customer_ID']) || !isset($_POST['cart_id'])) {
-    header('Location: ../watch_cart.php');
-    exit();
+   header('Location: ../watch_cart.php');
+   exit();
 }
 
-$db = new Database();
-$pdo = $db->conn;
+// Khởi tạo đối tượng Cart và lấy thông tin
+$cart = new Cart();
+$CartID = $_POST['cart_id'];
+$CustomerID = $_SESSION['Customer_ID'];
 
-$cart_id = $_POST['cart_id'];
-$customer_id = $_SESSION['Customer_ID'];
-
-// Xóa sản phẩm từ giỏ hàng với điều kiện cart_id và customer_id để đảm bảo an toàn
-$query = "DELETE FROM cart WHERE Cart_ID = ? AND Customer_ID = ?";
-$stmt = $pdo->prepare($query);
-$stmt->execute([$cart_id, $customer_id]);
-
-// Chuyển hướng về trang giỏ hàng
-header('Location: ../watch_cart.php');
+try {
+   // Xóa sản phẩm khỏi giỏ hàng
+   $cart->removeFromCart($CartID, $CustomerID);
+   $_SESSION['success'] = "Đã xóa sản phẩm khỏi giỏ hàng";
+   header('Location: ../watch_cart.php');
+} catch(Exception $e) {
+   // Xử lý lỗi nếu có
+   $_SESSION['error'] = "Lỗi khi xóa sản phẩm: " . $e->getMessage();
+   header('Location: ../watch_cart.php');
+}
 exit();
 ?>

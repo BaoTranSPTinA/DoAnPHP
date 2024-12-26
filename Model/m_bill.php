@@ -22,7 +22,7 @@ class Bill extends Database
         $this->set_query($sql);
         $this->bind_params("i", $id); // Ràng buộc tham số kiểu số nguyên
         $this->execute_query();
-        $this->close();
+   
     }
 
     public function update_1_Bill($id, $CustomerID, $total, $address, $status)
@@ -35,7 +35,7 @@ class Bill extends Database
         $this->set_query($sql);
         $this->bind_params("idssi", $CustomerID, $total, $address, $status, $id); // Ràng buộc tham số đúng loại
         $this->execute_query();
-        $this->close();
+  
     }
 
     public function list_all_bill()

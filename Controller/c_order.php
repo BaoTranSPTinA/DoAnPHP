@@ -74,7 +74,8 @@ class OrderController {
             $this->db->rollback_transaction();
             echo "Lỗi khi đặt hàng: " . $e->getMessage();
             return false;
-        }
+        } 
     }
 }
+
 ?>

@@ -8,7 +8,7 @@
                 VALUES ( $OrderID, $ProductID, $Quantity)";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
 
     }
 
@@ -17,7 +17,7 @@
         $sql = "DELETE FROM detail WHERE Cart_ID = '$id'";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
     }
 
     public function update_1_detail($id, $OrderID, $ProductID, $Quantity)
@@ -28,7 +28,7 @@
                 where Cart_ID = $id ";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
     }
 
    }

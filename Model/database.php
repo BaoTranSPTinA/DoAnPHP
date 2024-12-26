@@ -23,7 +23,14 @@ class Database
     public function set_query($sql)
     {
         $this->query = $sql;
-        $this->stmt = $this->conn->prepare($sql);
+        if ($this->conn && !$this->conn->connect_error) {
+            $this->stmt = $this->conn->prepare($sql);
+            if (!$this->stmt) {
+                throw new Exception("Prepare failed: " . $this->conn->error);
+            }
+        } else {
+            throw new Exception("Database connection is closed or invalid");
+        }
     }
 
     // Liên kết tham số với câu lệnh SQL
@@ -86,11 +93,14 @@ class Database
         $this->conn->rollback();
     }
 
-    // Đóng kết nối
-    public function close()
+    public function __destruct() 
     {
-        $this->conn->close();
+        if ($this->stmt) {
+            $this->stmt->close();
+        }
+        if ($this->conn) {
+            $this->conn->close();
+        }
     }
-    
 }
 ?>

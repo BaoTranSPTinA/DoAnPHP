@@ -8,7 +8,7 @@
          ( '$CustomerName', '$Username', '$Password', '$Email', '$PhoneNumber', '$Address')";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
 
     }
 
@@ -17,7 +17,7 @@
         $sql = "DELETE FROM User WHERE Customer_Name = '$CustomerName'";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
     }
 
     public function update_1_user($id, $CustomerName, $Username, $Password, $Email, $PhoneNumber, $Address)
@@ -31,7 +31,7 @@
                 where Customer_id = '$id'";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+  
     }
 
     public function list_all_user()

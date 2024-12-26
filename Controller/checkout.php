@@ -25,7 +25,7 @@ $cart = new Cart();
 $cart_items = $cart->getCartItems($CustomerID);
 
 if (empty($cart_items)) {
-    header('Location: watch_cart.php');
+    header('Location: ../watch_cart.php');
     exit();
 }
 

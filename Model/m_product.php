@@ -11,7 +11,6 @@ class Product extends Database
                 VALUES ('$ProductName', '$CategoryID', '$avatar_path', '$description', '$price', '$StockQuantity')";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close(); 
     }
 
 
@@ -21,7 +20,7 @@ class Product extends Database
         $sql = "DELETE FROM Product WHERE Product_Name = '$ProductName'";
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
     }
 
     public function update_1_product($id, $ProductName, $CategoryID, $description, $price, $StockQuantity, $avatar_path = NULL)
@@ -42,7 +41,7 @@ class Product extends Database
 
         $this->set_query($sql);
         $this->execute_query();
-        $this->close();
+
     }
 
     public function getProductData($productID)

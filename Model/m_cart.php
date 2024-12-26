@@ -9,7 +9,7 @@ class Cart extends Database
         $this->set_query($sql);
         $this->bind_params("iii", $CustomerID, $productID, $Quantity);
         $this->execute_query();
-        $this->close();
+   
     }
 
     public function updateCartQuantity($CustomerID, $productID, $Quantity) 
@@ -18,7 +18,7 @@ class Cart extends Database
         $this->set_query($sql);
         $this->bind_params("iii", $Quantity, $CustomerID, $productID);
         $this->execute_query();
-        $this->close();
+   
     }
 
     public function getCartItems($CustomerID)
@@ -49,7 +49,7 @@ class Cart extends Database
         $this->set_query($sql);
         $this->bind_params("ii", $CartID, $CustomerID);
         $this->execute_query();
-        $this->close();
+
     }
 
     public function clearCart($CustomerID)
@@ -57,8 +57,7 @@ class Cart extends Database
         $sql = "DELETE FROM cart WHERE Customer_ID = ?";
         $this->set_query($sql);
         $this->bind_params("i", $CustomerID);
-        $this->execute_query();
-        $this->close();
+        return $this->execute_query();
     }
 
     public function checkCartItem($CustomerID, $productID)
