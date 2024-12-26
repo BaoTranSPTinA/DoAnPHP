@@ -1,8 +1,8 @@
 <?php
-require_once('../Model/database.php');
-require_once('../Model/bill.php');
-require_once('../Model/detail.php');
-require_once('../Model/product.php');
+require_once(__DIR__ . '/../Model/database.php');
+require_once(__DIR__ . '/../Model/m_bill.php');
+require_once(__DIR__ . '/../Model/m_detail.php');
+require_once(__DIR__ . '/../Model/m_product.php');
 
 class OrderController {
 

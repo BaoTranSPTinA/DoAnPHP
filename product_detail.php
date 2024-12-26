@@ -177,7 +177,12 @@ if (isset($_SESSION['Role'])) {
                         <input type="number" value="1" min="1" class="qty-input" id="quantity">
                         <button class="qty-btn plus">+</button>
                     </div>
-                    <button class="add-to-cart-btn" onclick="addToCart(<?php echo $id; ?>)">Thêm vào giỏ hàng</button>
+                    <form method="POST" action="cart.php">
+                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['Customer_ID']; ?>">
+                        <input type="hidden" name="product_id" value="<?php echo $product_detail['Product_ID']; ?>">
+                        <input type="number" name="quantity" value="1" min="1">
+                        <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
+                    </form>
                 </div>
                 <?php else: ?>
                 <div class="login-notice">
@@ -211,9 +216,29 @@ if (isset($_SESSION['Role'])) {
 
         function addToCart(productId) {
             const quantity = document.getElementById('quantity').value;
-            // Thêm xử lý thêm vào giỏ hàng ở đây
-            // Có thể sử dụng AJAX để gửi request đến server
-            console.log('Thêm vào giỏ hàng:', productId, quantity);
+            fetch('Controller/c_add_to_cart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    product_id: productId,
+                    quantity: quantity
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Sản phẩm đã được thêm vào giỏ hàng');
+                    // Optionally refresh the cart icon/counter if you have one
+                } else {
+                    alert(data.message || 'Có lỗi xảy ra khi thêm vào giỏ hàng');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi thêm vào giỏ hàng');
+            });
         }
     </script>
 

@@ -201,11 +201,41 @@ class initDatabaseDetail extends Database  {
        echo "INIT COMPLETE";
     }   
 }
+class initDatabaseCart extends Database  {
 
 
+    public function create_structure()
+    {
+
+
+        $sql = "CREATE TABLE IF NOT EXISTS Cart (
+            Cart_ID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            Customer_ID INT(6) UNSIGNED NOT NULL,
+            Product_ID INT(6) UNSIGNED NOT NULL,
+            Quantity INT NOT NULL,
+            create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            FOREIGN KEY (Customer_ID) REFERENCES User(Customer_ID),
+            FOREIGN KEY (Product_ID) REFERENCES Product(Product_ID)
+            )";
+
+
+        // Role: 0 user, 1 admin
+
+
+       $this->set_query($sql);
+       $result = $this->execute_query();
+       $this->close();
+
+
+       echo "INIT COMPLETE";
+    }   
+}
 
 
 $myinit = new initDatabaseDetail();
+$myinit->create_structure();
+
+$myinit = new initDatabaseCart();
 $myinit->create_structure();
 
 
