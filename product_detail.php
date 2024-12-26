@@ -2,9 +2,9 @@
 session_start();
 require_once('Controller/c_list_product_home.php');
 
-
+// Kiểm tra id sản phẩm trong GET request
 if(isset($_GET['id'])) {
-    $id = $_GET['id'];
+    $id = intval($_GET['id']);  // Chuyển đổi giá trị id sang kiểu số nguyên để tăng cường bảo mật
     $product = new Product();
     $product_detail = $product->get_product_by_id($id);
     
@@ -33,10 +33,18 @@ if (isset($_SESSION['Role'])) {
 
 <body>
     <style>
+        body {
+            font-family: Poppins, sans-serif;
+            background-color: #b43f11;
+        }
+
         .product-detail-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 70px auto 2rem;
             padding: 0 1rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .product-detail-wrapper {
@@ -56,32 +64,32 @@ if (isset($_SESSION['Role'])) {
         .product-image img {
             width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
             object-fit: cover;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .product-info {
-            flex: 1;
-            padding: 1rem;
+            flex: 1 1 55%;
         }
 
         .product-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: #333;
             margin-bottom: 1rem;
         }
 
         .product-price {
             font-size: 1.8rem;
-            color: #e0a800;
+            color: #d35400;
             font-weight: bold;
             margin-bottom: 1.5rem;
         }
 
         .product-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
             margin-bottom: 2rem;
         }
 
@@ -95,66 +103,73 @@ if (isset($_SESSION['Role'])) {
             display: flex;
             align-items: center;
             border: 1px solid #ddd;
-            border-radius: 4px;
-            background: #fff;
+            border-radius: 5px;
+            overflow: hidden;
         }
 
         .qty-btn {
-            padding: 0.5rem 1rem;
-            background: #f5f5f5;
+            padding: 0.7rem 1.2rem;
+            background: #f0f0f0;
             border: none;
             cursor: pointer;
             font-size: 1.2rem;
-            transition: background 0.3s;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
 
         .qty-btn:hover {
-            background: #e0e0e0;
+            background-color: #ddd;
         }
 
         .qty-input {
-            width: 60px;
+            width: 50px;
             text-align: center;
             border: none;
-            padding: 0.5rem;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
-        .add-to-cart-btn {
+        .add-to-cart-form button {
             padding: 0.8rem 2rem;
-            background: #4c1d0f;
+            background-color: #833517;
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: background 0.3s;
-            font-size: 1rem;
+            transition: background-color 0.3s;
         }
 
-        .add-to-cart-btn:hover {
-            background: #693115;
+        .add-to-cart-form button:hover {
+            background-color: #5e320e;
+        }
+
+        .login-notice {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 1.5rem;
+        }
+
+        .login-notice a {
+            color: #d35400;
+            text-decoration: none;
+        }
+
+        .login-notice a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
             .product-detail-wrapper {
                 flex-direction: column;
+                align-items: center;
             }
-            
-            .product-image {
+
+            .product-image,
+            .product-info {
                 max-width: 100%;
             }
 
-            .product-actions {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .quantity-selector {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .add-to-cart-btn {
+            .add-to-cart-form button {
                 width: 100%;
             }
         }
@@ -163,24 +178,24 @@ if (isset($_SESSION['Role'])) {
     <div class="product-detail-container">
         <div class="product-detail-wrapper">
             <div class="product-image">
-                <img src="<?php echo substr($product_detail['avatar'], 3); ?>" alt="<?php echo $product_detail['Product_Name']; ?>">
+                <img src="<?php echo substr($product_detail['avatar'], 3); ?>" alt="<?php echo htmlspecialchars($product_detail['Product_Name'], ENT_QUOTES, 'UTF-8'); ?>">
             </div>
             <div class="product-info">
-                <h1 class="product-title"><?php echo htmlspecialchars($product_detail['Product_Name']); ?></h1>
+                <h1 class="product-title"><?php echo htmlspecialchars($product_detail['Product_Name'], ENT_QUOTES, 'UTF-8'); ?></h1>
                 <div class="product-price"><?php echo number_format($product_detail['Price'], 0, ',', '.'); ?> VND</div>
-                <p class="product-description"><?php echo htmlspecialchars($product_detail['Description']); ?></p>
+                <p class="product-description"><?php echo htmlspecialchars($product_detail['Description'], ENT_QUOTES, 'UTF-8'); ?></p>
                 
                 <?php if (isset($_SESSION['username'])): ?>
                 <div class="product-actions">
                     <div class="quantity-selector">
                         <button class="qty-btn minus">-</button>
-                        <input type="number" value="1" min="1" class="qty-input" id="quantity">
+                        <input type="number" value="1" min="1" class="qty-input" id="Quantity">
                         <button class="qty-btn plus">+</button>
                     </div>
-                    <form method="POST" action="cart.php">
-                        <input type="hidden" name="user_id" value="<?php echo $_SESSION['Customer_ID']; ?>">
-                        <input type="hidden" name="product_id" value="<?php echo $product_detail['Product_ID']; ?>">
-                        <input type="number" name="quantity" value="1" min="1">
+                    <form method="POST" action="cart.php" class="add-to-cart-form">
+                        <input type="hidden" name="Customer_ID" value="<?php echo htmlspecialchars($_SESSION['Customer_ID'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="Product_ID" value="<?php echo htmlspecialchars($product_detail['Product_ID'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="Quantity" id="quantity_input">
                         <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
                     </form>
                 </div>
@@ -214,32 +229,9 @@ if (isset($_SESSION['Role'])) {
             }
         });
 
-        function addToCart(productId) {
-            const quantity = document.getElementById('quantity').value;
-            fetch('Controller/c_add_to_cart.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    product_id: productId,
-                    quantity: quantity
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Sản phẩm đã được thêm vào giỏ hàng');
-                    // Optionally refresh the cart icon/counter if you have one
-                } else {
-                    alert(data.message || 'Có lỗi xảy ra khi thêm vào giỏ hàng');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Có lỗi xảy ra khi thêm vào giỏ hàng');
-            });
-        }
+        document.querySelector('.add-to-cart-form').addEventListener('submit', function(e) {
+            document.getElementById('quantity_input').value = document.getElementById('Quantity').value;
+        });
     </script>
 
     <?php include 'footer.php'; ?>

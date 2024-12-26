@@ -6,8 +6,8 @@
         
 
 
-        $new_building = new Bill();
-        $new_building->delete_1_bill($id);
+        $bill = new Bill();
+        $bill->delete_1_bill($id);
 ?>
 <script>
         window.close();

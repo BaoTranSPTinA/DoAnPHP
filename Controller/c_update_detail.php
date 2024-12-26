@@ -5,8 +5,8 @@
         $id = $_POST['id'];
         $OrderID = $_POST['oid'];
         $ProductID = $_POST['pid'];
-        $Quantity = $_POST['quantity'];
+        $Quantity = $_POST['Quantity'];
 
 
-        $new_building = new Detail();
-        $new_building->update_1_detail($id, $OrderID, $ProductID, $Quantity);
+        $detail = new Detail();
+        $detail->update_1_detail($id, $OrderID, $ProductID, $Quantity);

@@ -4,7 +4,7 @@
         session_start();
         $OrderID = $_POST['oid'];
         $ProductID = $_POST['pid'];
-        $Quantity = $_POST['quantity'];
+        $Quantity = $_POST['Quantity'];
  
-        $new_building = new Detail();
-        $new_building->create_1_Detail( $OrderID, $ProductID, $Quantity);
+        $detail = new Detail();
+        $detail->create_1_Detail( $OrderID, $ProductID, $Quantity);

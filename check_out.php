@@ -1,34 +1,33 @@
 <?php
 session_start();
-include 'init.php'; // Kết nối với database
+require_once ('init.php');
+require_once ('Model/m_cart.php');
+require_once ('Model/m_detail.php'); 
 
-// Lấy user_id từ session
-$user_id = $_SESSION['user_id'];
-
-// Lấy giỏ hàng của người dùng
-$query = "
-    SELECT cart.id AS cart_id, cart.product_id, cart.quantity 
-    FROM cart 
-    WHERE cart.user_id = ?
-";
-$stmt = $pdo->prepare($query);
-$stmt->execute([$user_id]);
-$cartItems = $stmt->fetchAll();
-
-// Lưu thông tin vào bảng `detail`
-foreach ($cartItems as $item) {
-    $insertDetail = "
-        INSERT INTO detail (cart_id, product_id, quantity) 
-        VALUES (?, ?, ?)
-    ";
-    $stmt = $pdo->prepare($insertDetail);
-    $stmt->execute([$item['cart_id'], $item['product_id'], $item['quantity']]);
+if (!isset($_SESSION['Customer_ID'])) {
+    header('Location: signin.php');
+    exit();
 }
 
-// Sau khi lưu chi tiết, xóa giỏ hàng của người dùng
-$deleteCart = "DELETE FROM cart WHERE user_id = ?";
-$stmt = $pdo->prepare($deleteCart);
-$stmt->execute([$user_id]);
+// Lấy user_id từ session
+$CustomerID = $_SESSION['Customer_ID'];
+
+// Khởi tạo đối tượng Cart
+$cart = new Cart();
+
+// Lấy thông tin giỏ hàng
+$cart_items = $cart->getCartItems($CustomerID);
+
+// Khởi tạo đối tượng Detail để lưu chi tiết đơn hàng
+$detail = new Detail();
+
+// Lưu thông tin vào bảng detail
+foreach ($cart_items as $item) {
+    $detail->create_1_Detail($item['Cart_ID'], $item['Product_ID'], $item['Quantity']);
+}
+
+// Xóa giỏ hàng sau khi lưu chi tiết
+$cart->clearCart($CustomerID);
 
 // Chuyển hướng đến trang xác nhận thanh toán
 header('Location: confirmation.php');

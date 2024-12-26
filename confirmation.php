@@ -6,7 +6,7 @@
     <title>Xác nhận đơn hàng</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Poppins, sans-serif;
             text-align: center;
             padding: 50px;
             background-color: #f5f5f5;

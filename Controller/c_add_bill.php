@@ -9,8 +9,8 @@
         
 
 
-        $new_building = new Bill();
-        $new_building->create_1_Bill($CustomerID,  $total, $address, $status);
+        $bill = new Bill();
+        $bill->create_1_Bill($CustomerID,  $total, $address, $status);
 ?>
 
 <script>

@@ -4,6 +4,6 @@
         session_start();
         $id = $_POST['id'];
     
-        $new_building = new detail();
-        $new_building->delete_1_detail($id);
+        $detail = new Detail();
+        $detail->delete_1_detail($id);
 ?>

@@ -54,7 +54,7 @@ body {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    align: center;
+    text-align: center;
 }
 
 .container button:hover{

@@ -43,7 +43,7 @@ $categories = $category->list_all_category();  // Get all categories from the da
     <div class="icons">
         <div id="menu-btn" class="fas fa-bars"></div>
         <div id="search-btn" class="fas fa-search"></div>
-        <a href="cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
+        <a href="watch_cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
         <?php if (isset($_SESSION['username'])): ?> 
             <!-- Nếu đã đăng nhập, hiển thị tên người dùng và liên kết tới trang thông tin cá nhân -->
@@ -155,5 +155,22 @@ $categories = $category->list_all_category();  // Get all categories from the da
 
 .header .icons div:hover {
     color: #222;
+}
+.cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff4444;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    min-width: 15px;
+    text-align: center;
 }
 </style>

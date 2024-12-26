@@ -9,8 +9,12 @@ class Bill extends Database
         $this->set_query($sql);
         $this->bind_params("idss", $CustomerID, $total, $address, $status); // Kiểm tra kiểu dữ liệu tham số
         $this->execute_query();
-        $this->close();
+
+        $OrderID = $this->conn->insert_id; // Lấy ID của đơn hàng vừa tạo
+
+        return $OrderID; // Trả về OrderID
     }
+
 
     public function delete_1_Bill($id)
     {
