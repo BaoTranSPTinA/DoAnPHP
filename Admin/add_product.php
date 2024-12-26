@@ -3,116 +3,78 @@
 ?>
 <body>
 <style>
-    body {
-    margin: 0;
-    padding-top: 35px;
-    font-family: Arial, sans-serif;
-    background-color: #4c1d0f; 
-    color: #f5f5f5; 
+body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #A13C1E;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+    }
+.container{
+     background-color: white;
+      width: 400px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+.container h1{
+     text-align: center;
+     color: #A13C1E;
+     font-size: 30px;
 }
 
-.form-container {
-    background-color: #4c1d0f; 
-    padding: 50px 20px;
-}
-
-.form-control {
+.container input{
     width: 100%;
-    height: 45px; 
-    font-size: 18px;
-    border: 2px solid #f5f5f5; 
-    background-color: transparent; 
-    color: #f5f5f5; 
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 15px;
+    width: 350px;
 }
 
-.title {
-    font-size: 30px;
-    font-weight: bold;
-    color: #ffc107;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 20px;
+.container input::placeholder{
+    color: #888;
 }
 
-.form-label {
-    font-size: 18px;
-    color: #f5f5f5;
-    margin-bottom: 10px;
-    display: block;
-    text-align: left; 
+.container textarea{
+    width: 365px;
 }
 
-.message {
+.container button{
+    width: 370px;
+    padding: 10px;
+    background-color: #A13C1E;
+    color: white;
+    border: none;
+    border-radius: 4px;
     font-size: 16px;
-    text-align: center;
-    margin-top: 20px;
+    cursor: pointer;
+    align: center;
 }
 
-.message a {
-    color: #ffc107; 
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.message a:hover {
-    color: #e0a800; 
-    text-decoration: underline;
-}
-button{
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #ffc107;
+.container button:hover{
+    background-color: #FFE4C4;
     color: black;
-    border-radius: 5px;
-    align-items: center; 
-
-}
-
-button:hover {
-    background-color: #4c1d0f;
 }
 </style>
-
-    <div class="content">
-            <?php
-                require ('../controller/c_list_user.php');
-                $c_user = new C_user(); 
-                $list_user = $c_user->list_all_user();
-
-            ?>
-        <div class="container mt-5 form-container">
-            <h2 class="title">Thêm sản phẩm</h2>
+<div class = "container">
+            <h1 class="title">Thêm sản phẩm</h1>
             <form action="../controller/c_add_product.php" method="POST" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label for="ProductName" class="form-label">Tên sản phẩm</label>
-                    <input type="text" id="ProductName" name="ProductName" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="CategoryID" class="form-label">Mã danh mục</label>
-                    <input type="number" id="CategoryID" name="CategoryID" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="Description" class="form-label">Mô tả</label>
-                    <textarea id="Description" name="Description" class="form-control" rows="3" required></textarea>
-                </div>
-                <div class="mb-3">
-                    <label for="Price" class="form-label">Giá</label>
-                    <input type="number" id="Price" name="Price" class="form-control" step="0.01" required>
-                </div>
-                <div class="mb-3">
-                    <label for="StockQuantity" class="form-label">Số lượng</label>
-                    <input type="number" id="StockQuantity" name="StockQuantity" class="form-control" required>
-                </div>
-                <div class="mb-3">
-                    <label for="avatar" class="form-label">Hình ảnh</label>
+                    <input type="text" id="ProductName" placeholder = "Tên sản phẩm" name="ProductName" class="form-control" required>
+                    <input type="number" id="CategoryID" placeholder = "Mã danh mục" name="CategoryID" class="form-control" required>
+                    <textarea id="Description" placeholder = "Mô tả" name="Description" class="form-control" rows="3" required></textarea>
+                    <input type="number" id="Price" placeholder = "Giá" name="Price" class="form-control" step="0.01" required>
+                    <input type="number" id="StockQuantity" placeholder = "Số lượng" name="StockQuantity" class="form-control" required>
                     <input type="file" id="avatar" name="avatar" class="form-control" accept="image/*" required>
-                </div>
                 <button type="submit" class="btn btn-primary btn-block">Thêm</button>
             </form>
-        </div>
-    </div>
+</div>
+
 
 
 
