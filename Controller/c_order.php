@@ -64,9 +64,12 @@ class OrderController {
             // Cập nhật tổng tiền đơn hàng
             $bill->update_1_Bill($OrderID, $CustomerID, $total, $address, 'Pending');
 
+            // Xóa giỏ hàng sau khi đặt hàng thành công
+            $cart = new Cart();
+            $cart->clearCart($CustomerID);
+
             $this->db->commit_transaction();
             
-            // Chuyển hướng đến trang xác nhận
             header("Location: ../confirmation.php");
             exit();
 

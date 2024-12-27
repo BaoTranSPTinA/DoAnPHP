@@ -516,7 +516,7 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
 
             </div>
 
-            <div class="row">
+            <!--<div class="row">
                 <form action="">
                     <h3> get in touch </h3>
                     <div class="inputBox">
@@ -540,21 +540,11 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
 
             <iframe class="map" src= " <iframe src= https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1302037687947!2d106.6179585!3d10.801338399999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752b9535b60699%3A0x4737f3be8bd41d5b!2zw4ZPTiBNQUxMIFTDom4gUGjDug!5e0!3m2!1svi!2s!4v1729833111322!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-         </section>
+         </section>-->
 
             <div class="space"></div>
 
-            <script>
-                // Hiển thị phần đăng nhập/đăng ký khi bấm vào icon người dùng
-                document.querySelector('#login-btn').onclick = () => {
-                    document.querySelector('#login-register').scrollIntoView({ behavior: 'smooth' });
-                };
-                // Chuyển hướng đến trang đăng nhập/đăng ký
-                document.querySelector('#login-btn').onclick = () => {
-                    window.location.href = 'login-register.html'; // Đường dẫn đến trang mới
-                };
-
-            </script>               
+                          
 
 
             <!--footer section start-->
@@ -599,7 +589,7 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
 
 
 
-        <!-- Custom JS file link -->
+       
         <script src="public/JS/main.js"></script>
         
         <script>    

@@ -91,9 +91,10 @@ section{
     z-index: 1000;
     background: var(--brown);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    padding: 2rem 9%;
+    padding: 1rem 5%;
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);  
 }
 
@@ -108,14 +109,23 @@ section{
     padding-right: .5rem;
 }
 
-.header .navbar a{
-    font-size: 1.7rem;
-    color: #fff;
-    margin: 0 1rem;
+.header .navbar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.header .navbar a {
+    margin: 0.5rem 1rem;
 }
 
 .header .navbar a:hover{
     color: #222;  
+}
+
+.header .icons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .header .icons div{
@@ -134,17 +144,16 @@ section{
 }
 .slide {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 2rem 5%;
 }
 
-.slide .content {
-    flex: 1 1 50%; /* Căn chỉnh phần nội dung */
-}
-
+.slide .content,
 .slide .img {
-    flex: 1 1 50%; /* Căn chỉnh phần hình ảnh */
+    flex: 1 1 100%;
+    min-width: 300px;
 }
 
 .slide .img img {
@@ -320,10 +329,9 @@ section{
 }
 
 .products .box-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    padding: 4rem 0;
 }
 
 .products .box-container .box{
@@ -443,8 +451,8 @@ section{
 
 .gallery .box-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Đặt 3 ảnh trên 1 hàng */
-    gap: 1.5rem; /* Khoảng cách giữa các box */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .gallery .box {
@@ -878,5 +886,76 @@ margin-top: 2rem;
     }
     .home .slides-container .slide h3{
         font-size: 4rem;
+    }
+}
+
+/* Media queries cho màn hình lớn */
+@media (max-width: 1200px) {
+    .container {
+        width: 95%;
+        padding: 2rem;
+    }
+    
+    .products .box-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Media queries cho tablet */
+@media (max-width: 768px) {
+    html {
+        font-size: 55%;
+    }
+    
+    .header {
+        padding: 2rem;
+    }
+    
+    .products .box-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .blogs .box-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact .row {
+        flex-direction: column;
+    }
+    
+    .contact .row form,
+    .contact .row .map {
+        flex: 1 1 100%;
+        margin: 1rem 0;
+    }
+}
+
+/* Media queries cho điện thoại */
+@media (max-width: 480px) {
+    html {
+        font-size: 50%;
+    }
+    
+    .header .navbar {
+        width: 100%;
+    }
+    
+    .products .box-container,
+    .blogs .box-container,
+    .gallery .box-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .home .slides-container .slide .content h3 {
+        font-size: 3rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .btn {
+        padding: .6rem 2rem;
+        font-size: 1.5rem;
     }
 }

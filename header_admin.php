@@ -24,7 +24,6 @@ $categories = $category->list_all_category();  // Get all categories from the da
         </div>
 
         <a href="#">Shop</a>
-        <a href="#">Review</a>
         <a href="#">Blog</a>
         <a href="#about-section1">Contact</a>
 

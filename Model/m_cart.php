@@ -57,8 +57,12 @@ class Cart extends Database
         $sql = "DELETE FROM cart WHERE Customer_ID = ?";
         $this->set_query($sql);
         $this->bind_params("i", $CustomerID);
-        return $this->execute_query();
+        if (!$this->execute_query()) {
+            throw new Exception("Không thể xóa giỏ hàng cho khách hàng với ID: " . $CustomerID);
+        }
+        return true;
     }
+
 
     public function checkCartItem($CustomerID, $productID)
     {

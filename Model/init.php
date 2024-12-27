@@ -26,7 +26,7 @@ class initDatabaseUser extends Database  {
 
        $this->set_query($sql);
        $result = $this->execute_query();
-       $this->close();
+       
 
 
        echo "INIT COMPLETE";
@@ -53,7 +53,7 @@ class initDatabaseUserInfo extends Database {
 
         $this->set_query($sql);
         $result = $this->execute_query();
-        $this->close();
+        
 
         echo "INIT COMPLETE";
     }
@@ -82,7 +82,7 @@ class initDatabaseCategory extends Database  {
 
        $this->set_query($sql);
        $result = $this->execute_query();
-       $this->close();
+       
 
 
        echo "INIT COMPLETE";
@@ -117,7 +117,7 @@ class initDatabaseProduct extends Database  {
 
        $this->set_query($sql);
        $result = $this->execute_query();
-       $this->close();
+       
 
 
        echo "INIT COMPLETE";
@@ -156,7 +156,7 @@ class initDatabaseBill extends Database  {
 
        $this->set_query($sql);
        $result = $this->execute_query();
-       $this->close();
+       
 
 
        echo "INIT COMPLETE";
@@ -195,7 +195,7 @@ class initDatabaseDetail extends Database  {
 
        $this->set_query($sql);
        $result = $this->execute_query();
-       $this->close();
+       
 
 
        echo "INIT COMPLETE";
@@ -224,7 +224,7 @@ class initDatabaseCart extends Database  {
 
        $this->set_query($sql);
        $result = $this->execute_query();
-       $this->close();
+       
 
 
        echo "INIT COMPLETE";

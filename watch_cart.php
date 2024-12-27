@@ -4,22 +4,18 @@ require_once("Model/database.php");
 require_once("Model/m_product.php");
 require_once("Model/m_cart.php");
 
-// Kiểm tra đăng nhập
 if (!isset($_SESSION['Customer_ID'])) {
     header('Location: signin.php');
     exit();
 }
 
-// Khởi tạo đối tượng Cart
 $cart = new Cart();
 $product = new Product();
 
 $CustomerID = $_SESSION['Customer_ID'];
 
-// Lấy thông tin giỏ hàng từ database
 $cart_items = $cart->getCartItems($CustomerID);
 
-// Tạo mảng chứa thông tin đầy đủ của sản phẩm trong giỏ hàng
 $cart_details = [];
 $total = 0;
 foreach ($cart_items as $item) {
@@ -92,7 +88,7 @@ if (isset($_SESSION['Role'])) {
                     <div class="summary-total">
                         <h3>Tổng cộng: <span><?php echo number_format($total); ?> VNĐ</span></h3>
                     </div>
-                    <form method="POST" action="Controller/checkout.php" class="checkout-form">
+                    <form method="POST" action="Controller/c_checkout.php" class="checkout-form">
                         <div class="form-group">
                             <label for="Ship_Address">Địa chỉ giao hàng:</label>
                             <textarea name="Ship_Address" id="Ship_Address" required></textarea>
