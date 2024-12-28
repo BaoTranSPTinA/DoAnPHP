@@ -41,7 +41,7 @@
                 <a href="#">Shop</a>
                 <a href="#about-section">About</a>
                 <a href="#">Review</a>
-                <a href="#">Blog</a>
+                <a href="#blogs">Blog</a>
                 <a href="#about-section1">Contact</a>
             </nav>
 
@@ -129,7 +129,7 @@
 
 
         <!-- category start -->
-         <div class="heading">
+         <div class="heading" id="our-shop">
             <h1>Our Shop</h1>
          </div>
          
@@ -344,7 +344,7 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
                         <span>happy client</span>
                     </div>
                 </div>
-                <p>Bánh tại Cake-A-Delicious thật sự tuyệt vời! Hương vị đậm đà, bánh mềm mịn, mỗi miếng bánh đều khiến tôi hài lòng. Rất đáng để thử!</p>
+                <p>Bánh tại Cake-A-Delicious thật sự tuyệt vời! Hương vị đậm ��à, bánh mềm mịn, mỗi miếng bánh đều khiến tôi h��i lòng. Rất đáng để thử!</p>
             </div>
 
             <div class="box">
@@ -355,7 +355,7 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
                         <span>happy client</span>
                     </div>
                 </div>
-                <p>Tôi đã đặt bánh cho sinh nhật con gái và nó vượt qua mong đợi của tôi. Trang trí đẹp mắt và hương vị cực kỳ ngon!</p>
+                <p>Tôi đã đặt bánh cho sinh nhật con gái và nó vượt qua mong đợi của tôi. Trang trí đ���p mắt và hương vị cực kỳ ngon!</p>
             </div>
 
             <div class="box">
@@ -377,15 +377,15 @@ We don't just bake cakes—we create moments of joy. With our passion for creati
                         <span>happy client</span>
                     </div>
                 </div>
-                <p>Tôi đã thử nhiều tiệm bánh, nhưng nơi này nổi bật cả về chất lượng lẫn dịch vụ. Chắc chắn sẽ quay lại.</p>
+                <p>Tôi đã thử nhiều tiệm bánh, nhưng nơi này nổi bật cả về chất lư��ng lẫn dịch vụ. Chắc chắn sẽ quay lại.</p>
             </div>
 
         </section>
 
 
         <!-- blog section start -->
-         <div class="heading">
-            <h1> Our Blogs</h1>
+         <div class="heading" id="blogs">
+            <h1>Our Blogs</h1>
          </div>
 
          <section class="blogs">

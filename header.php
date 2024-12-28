@@ -12,7 +12,7 @@ $categories = $category->list_all_category();  // Get all categories from the da
 
     <nav class="navbar">
         <a href="index.php">Home</a>
-        <a href="#">Shop</a>
+        <a href="#our-shop">Shop</a>
 
         <!-- Category Dropdown Menu -->
         <div class="dropdown">
@@ -24,7 +24,7 @@ $categories = $category->list_all_category();  // Get all categories from the da
             </div>
         </div>
 
-        <a href="#">Blog</a>
+        <a href="#blogs">Blog</a>
         <a href="#about-section1">Contact</a>
     </nav>
 
