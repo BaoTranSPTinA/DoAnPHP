@@ -56,5 +56,24 @@ class Bill extends Database
             die("Lỗi truy vấn: " . $this->get_last_error()); // In ra lỗi nếu có
         }
     }
+
+    public function get_bills_by_customer($CustomerID) {
+        $sql = "SELECT * FROM bill WHERE Customer_ID = ? ORDER BY create_time DESC";
+        $this->set_query($sql);
+        $this->bind_params("i", $CustomerID);
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            $bills = array();
+            
+            while ($row = $result->fetch_assoc()) {
+                $bills[] = $row;
+            }
+            
+            return $bills;
+        } else {
+            return array(); // Return empty array if query fails
+        }
+    }
 }
 ?>

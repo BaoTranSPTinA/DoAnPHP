@@ -47,6 +47,9 @@ if (isset($_SESSION['Role'])) {
     <div class="cart-container">
         <h2 class="cart-title">Giỏ hàng của bạn</h2>
         
+        <button id="viewOrders" class="view-orders-btn">Xem đơn hàng đã mua</button>
+        <div id="orderList"></div>
+        
         <?php if (empty($cart_details)): ?>
             <div class="empty-cart">
                 <i class="fas fa-shopping-cart"></i>
@@ -104,6 +107,24 @@ if (isset($_SESSION['Role'])) {
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#viewOrders").click(function() {
+            $.ajax({
+                url: "fetch_orders.php",
+                method: "GET",
+                success: function(data) {
+                    $("#orderList").html(data);
+                },
+                error: function() {
+                    alert("Không thể tải danh sách đơn hàng!");
+                }
+            });
+        });
+    });
+</script>
 
 <style>
 .cart-wrapper {
@@ -298,5 +319,29 @@ if (isset($_SESSION['Role'])) {
     .item-details {
         margin-left: 0;
     }
+}
+
+.view-orders-btn {
+    background-color: #833517;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin: 20px 0;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.view-orders-btn:hover {
+    background-color: #b43f11;
+}
+
+#orderList {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    overflow: hidden;
 }
 </style>
