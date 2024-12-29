@@ -31,9 +31,6 @@ foreach ($orders as $order) {
     echo "<h3>Đơn hàng #" . $order['Order_ID'] . "</h3>";
     echo "<p>Ngày đặt: " . $order['create_time'] . "</p>";
     echo "<p>Trạng thái: <span class='order-status'>" . $order['Order_Status'] . "</span></p>";
-    if ($order['Order_Status'] == 'Pending') {
-        echo "<button class='cancel-order-btn' onclick='showCancelModal(" . $order['Order_ID'] . ")'><i class='fas fa-pencil-alt'></i> Muốn Hủy/ Thay đổi thông tin đơn hàng</button>";
-    }
     echo "<p>Tổng tiền: " . number_format($order['Total_Amount']) . " VNĐ</p>";
     echo "<p>Địa chỉ giao hàng: " . $order['Ship_Address'] . "</p>";
     echo "</div>";
@@ -133,29 +130,29 @@ echo "
 }
 
 .cancel-order-btn {
-    background-color: #007bff; /* Màu xanh dương */
+    background-color: #ff4444;
     color: white;
     border: none;
-    padding: 8px 15px; /* Kích thước nút */
-    border-radius: 20px; /* Độ bo tròn */
-    font-size: 14px; /* Kích thước font */
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 15px;
     display: flex;
     align-items: center;
-    gap: 5px; /* Khoảng cách giữa icon và text */
+    gap: 5px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .cancel-order-btn:hover {
-    background-color: #0056b3; /* Màu xanh dương đậm khi hover */
+    background-color: #cc0000;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .cancel-order-btn i {
-    font-size: 18px; /* Kích thước icon */
+    font-size: 14px;
 }
 
 /* Modal styles */
