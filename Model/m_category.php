@@ -65,9 +65,9 @@
         }
 
         // Get products by category ID
-        public function get_products_by_category($category_id)
+        public function get_products_by_category($CategoryID)
         {
-            $sql = "SELECT * FROM Product WHERE Category_ID = '$category_id'";
+            $sql = "SELECT * FROM Product WHERE Category_ID = '$CategoryID'";
             $this->set_query($sql);
             
             if ($this->execute_query()) {

@@ -17,6 +17,7 @@ $product = new Product();
 
 // Lấy danh sách đơn hàng của khách hàng
 $orders = $bill->get_bills_by_customer($CustomerID);
+$totalOrders = $bill->count_customer_orders($CustomerID);
 
 if (empty($orders)) {
     echo "<p class='no-orders'>Bạn chưa có đơn hàng nào</p>";
@@ -25,10 +26,12 @@ if (empty($orders)) {
 
 // HTML cho danh sách đơn hàng
 echo "<div class='orders-list'>";
+$orderNumber = $totalOrders;
 foreach ($orders as $order) {
     echo "<div class='order-item'>";
     echo "<div class='order-header'>";
-    echo "<h3>Đơn hàng #" . $order['Order_ID'] . "</h3>";
+    echo "<h3>Đơn hàng #" . $orderNumber . "</h3>";
+    $orderNumber--;
     echo "<p>Ngày đặt: " . $order['create_time'] . "</p>";
     echo "<p>Trạng thái: <span class='order-status'>" . $order['Order_Status'] . "</span></p>";
     echo "<p>Tổng tiền: " . number_format($order['Total_Amount']) . " VNĐ</p>";
@@ -122,12 +125,14 @@ echo "
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    gap: 20px;
 }
 
 .product-item img {
     width: 80px;
     height: 80px;
     object-fit: cover;
+    margin-right: 20px;
 }
 
 .cancel-order-btn {
@@ -224,6 +229,10 @@ echo "
     transform: translateY(-2px);
 }
 
+.product-info {
+    flex: 1;
+    padding-left: 15px; /* Thêm padding bên trái cho phần thông tin */
+}
 .product-info p {
     margin: 5px 0;
     font-size: 1.3em;

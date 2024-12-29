@@ -85,22 +85,29 @@ class Product extends Database
 
     public function list_all_product()
     {
-        $sql = "SELECT * FROM Product";
-        $this->set_query($sql);
-        
-        // Kiểm tra xem câu truy vấn có thành công không
-        if ($this->execute_query()) {
-            $result = $this->stmt->get_result(); // Lấy kết quả truy vấn
+        try {
+            $sql = "SELECT * FROM Product ORDER BY Product_ID DESC";
+            $this->set_query($sql);
             
-            $list_product = array();
-            if ($result->num_rows > 0) {
+            if ($this->execute_query()) {
+                $result = $this->stmt->get_result();
+                
+                if (!$result) {
+                    throw new Exception("Lỗi khi lấy kết quả: " . $this->conn->error);
+                }
+                
+                $list_product = array();
                 while ($row = $result->fetch_assoc()) {
                     $list_product[] = $row;
                 }
+                
+                return $list_product;
+            } else {
+                throw new Exception("Lỗi thực thi truy vấn: " . $this->get_last_error());
             }
-            return $list_product;
-        } else {
-            return [];  // Trả về mảng rỗng nếu câu truy vấn thất bại
+        } catch (Exception $e) {
+            error_log("Lỗi trong list_all_product: " . $e->getMessage());
+            return [];
         }
     }
     public function search_products($keyword) {

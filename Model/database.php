@@ -59,6 +59,14 @@ class Database
         }
         return null;
     }
+    public function fetch_all_rows()
+    {
+        if ($this->stmt) {
+            $result = $this->stmt->get_result();
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return [];
+    }
 
     // Lấy ID của bản ghi mới được chèn vào
     public function get_last_insert_id()

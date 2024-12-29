@@ -1,5 +1,5 @@
 <?php
-    require_once('../Model/m_category.php');
+    require_once('Model/m_category.php');
 
     class c_category {
         public function list_all_category()

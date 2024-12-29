@@ -87,5 +87,18 @@ class Bill extends Database
         }
         return null;
     }
+
+    public function count_customer_orders($CustomerID) {
+        $sql = "SELECT COUNT(*) as order_count FROM bill WHERE Customer_ID = ? ORDER BY create_time DESC";
+        $this->set_query($sql);
+        $this->bind_params("i", $CustomerID);
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            $row = $result->fetch_assoc();
+            return $row['order_count'];
+        }
+        return 0;
+    }
 }
 ?>

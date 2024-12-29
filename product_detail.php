@@ -57,7 +57,7 @@ if (isset($_SESSION['Role'])) {
         .product-image {
             position: relative;
             flex: 1;
-            max-width: 500px;
+            max-width: 300px;
         }
 
         .product-image img {
@@ -164,13 +164,13 @@ if (isset($_SESSION['Role'])) {
         }
 
         .product-description h3 {
-            font-size: 1.2rem;
+            font-size: 1.7rem;
             color: #fff;
             margin-bottom: 15px;
         }
 
         .product-description p {
-            font-size: 1rem;
+            font-size: 1.5rem;
             line-height: 1.6;
             color: #fff;
         }
@@ -194,32 +194,36 @@ if (isset($_SESSION['Role'])) {
             text-decoration: underline;
         }
         .related-products {
-            margin-top: 3rem;
-            padding: 2rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
             background: #b43f11;
             border-radius: 10px;
         }
 
         .related-products h2 {
             color: #fff;
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-card {
             background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 8px;
+            border-radius: 6px;
             text-align: center;
             transition: transform 0.3s ease;
             color: #fff;
+            padding: 0.8rem;
+            max-width: 200px;
+            margin: 0 auto;
         }
 
         .product-card:hover {
@@ -227,37 +231,99 @@ if (isset($_SESSION['Role'])) {
         }
 
         .product-card img {
+            height: 150px;
             width: 100%;
-            height: 200px;
             object-fit: cover;
             border-radius: 5px;
         }
 
         .product-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: #fff;
-            margin: 1rem 0;
+            margin: 0.8rem 0;
         }
 
         .product-card .price {
             color: #ffc107;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .product-card .view-detail {
             display: inline-block;
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             background: rgba(255,255,255,0.2);
             color: #fff;
             text-decoration: none;
             border-radius: 5px;
             transition: background 0.3s ease;
+            font-size: 0.9rem;
         }
 
         .product-card .view-detail:hover {
             background: rgba(255,255,255,0.3);
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        .overlay .close-zoom {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+        }
+
+        .overlay .zoom-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .overlay .zoom-controls button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .overlay .zoom-controls button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 992px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -278,7 +344,16 @@ if (isset($_SESSION['Role'])) {
                 width: 100%;
             }
             .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .product-card img {
+                height: 140px;
+            }
+        }
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(1, 1fr);
             }
         }
     </style>
@@ -343,6 +418,15 @@ if (isset($_SESSION['Role'])) {
         <?php endif; ?>
     </div>
 
+    <div class="overlay" id="imageOverlay">
+        <button class="close-zoom" onclick="closeZoom()">×</button>
+        <img src="" alt="Zoomed product image" id="zoomedImage">
+        <div class="zoom-controls">
+            <button onclick="adjustZoom(-0.2)">-</button>
+            <button onclick="adjustZoom(0.2)">+</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const minusBtn = document.querySelector('.minus');
@@ -371,18 +455,45 @@ if (isset($_SESSION['Role'])) {
             }
         });
 
+        let currentZoom = 1;
+
         function toggleZoom(button) {
-            const img = button.parentElement.querySelector('img');
-            if (img.classList.contains('zoomed')) {
-                img.style.transform = 'scale(1)';
-                img.classList.remove('zoomed');
-                button.innerHTML = '<i class="fas fa-search-plus"></i>';
-            } else {
-                img.style.transform = 'scale(1.5)';
-                img.classList.add('zoomed');
-                button.innerHTML = '<i class="fas fa-search-minus"></i>';
-            }
+            const overlay = document.getElementById('imageOverlay');
+            const zoomedImage = document.getElementById('zoomedImage');
+            const originalImg = button.parentElement.querySelector('img');
+            
+            overlay.style.display = 'flex';
+            zoomedImage.src = originalImg.src;
+            currentZoom = 1;
+            zoomedImage.style.transform = `scale(${currentZoom})`;
+            
+            // Thêm sự kiện wheel để zoom bằng chuột
+            overlay.addEventListener('wheel', handleMouseWheel);
         }
+
+        function closeZoom() {
+            const overlay = document.getElementById('imageOverlay');
+            overlay.style.display = 'none';
+            overlay.removeEventListener('wheel', handleMouseWheel);
+        }
+
+        function adjustZoom(delta) {
+            currentZoom = Math.max(0.5, Math.min(3, currentZoom + delta));
+            document.getElementById('zoomedImage').style.transform = `scale(${currentZoom})`;
+        }
+
+        function handleMouseWheel(e) {
+            e.preventDefault();
+            const delta = e.deltaY > 0 ? -0.2 : 0.2;
+            adjustZoom(delta);
+        }
+
+        // Đóng overlay khi click bên ngoài ảnh
+        document.getElementById('imageOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeZoom();
+            }
+        });
     </script>
 
     <?php include 'footer.php'; ?>

@@ -1,19 +1,18 @@
 <?php
 session_start();
 require_once('Controller/c_list_product_home.php');
-require_once('Model/m_product.php');
 require_once('Model/m_category.php');
 
-$product = new Product();
+$c_product = new c_product();
 $category = new Category();
+$categories = $category->list_all_category();
 
-
-$categoryID = isset($_GET['category']) ? $_GET['category'] : null;
-
-if ($categoryID) {
-    $list_product = $product->get_products_by_category($categoryID);
+// Lấy sản phẩm theo category nếu có
+if (isset($_GET['category'])) {
+    $category_id = $_GET['category'];
+    $list_product = $c_product->get_products_by_category($category_id);
 } else {
-    $list_product = $product->list_all_product();
+    $list_product = $c_product->list_all_product();
 }
 
 include 'head.php';
@@ -38,33 +37,93 @@ if (isset($_SESSION['Role'])) {
             font-size: 2.5rem; 
             color: #ffffff; 
         }
-        .filter {
-            text-align: left;
-            margin: 20px 0;
+
+        .products .title span {
+            color: #222;
         }
-        .filter select {
+
+        .category-box {
+            background: transparent;
             padding: 10px;
+            border-radius: 5px;
+            margin: 20px auto;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .category-box h3 {
+            color: #ffc107;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+
+        .category-select {
+            width: 50%;
+            padding: 8px;
             font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;
+            color: #000;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .category-select:hover {
+            border-color: #ffc107;
+        }
+
+        .category-select option {
+            background: #fff;
+            color: #000;
+            padding: 10px;
+        }
+
+        .category-select option:hover {
+            background: #f4f4f4;
+        }
+
+
+        @media (max-width: 768px) {
+            .box-container {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .box-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-box ul {
+                flex-direction: column;
+            }
+            
+            .category-box li {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
     <section class="products">
-        <h2 class="title"> All <span>Products</span> </h2>
+        <h2 class="title">All <span>Products</span></h2>
         
-        <div class="filter">
-            <form method="GET" action="view_all_product.php">
-                <select name="category" onchange="this.form.submit()">
-                    <option value="">All Categories</option>
-                    <?php
-                    $categories = $category->list_all_category(); 
-                    foreach ($categories as $category) {
-                        $selected = ($category['Category_ID'] == $categoryID) ? 'selected' : '';
-                        echo "<option value='{$category['Category_ID']}' $selected>{$category['Category_Name']}</option>";
-                    }
-                    ?>
-                </select>
-            </form>
+        <div class="category-box">
+            <h3>Category</h3>
+            <select id="category-select" class="category-select" onchange="window.location.href=this.value">
+                <option value="view_all_product.php">All Products</option>
+                <?php foreach ($categories as $category): ?>
+                    <option 
+                        value="view_all_product.php?category=<?php echo $category['Category_ID']; ?>"
+                        <?php echo (isset($_GET['category']) && $_GET['category'] == $category['Category_ID']) ? 'selected' : ''; ?>
+                    >
+                        <?php echo htmlspecialchars($category['Category_Name']); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
         </div>
-
+        
         <div class="box-container">
             <?php if (!empty($list_product)): ?>
                 <?php foreach ($list_product as $product): ?>
@@ -98,7 +157,7 @@ if (isset($_SESSION['Role'])) {
                 </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <p style="text-align: center; color: #fff;">No products found for this category.</p>
+                <p style="text-align: center; color: #fff;">Không tìm thấy sản phẩm nào.</p>
             <?php endif; ?>
         </div>
     </section>
