@@ -98,13 +98,13 @@ echo "
 .order-header h3 {
     color: #2c3e50;
     margin: 0 0 10px 0;
-    font-size: 1.2em;
+    font-size: 1.7em;
 }
 
 .order-header p {
     color: #7f8c8d;
     margin: 5px 0;
-    font-size: 0.9em;
+    font-size: 1.3em;
 }
 
 .order-products {
@@ -114,6 +114,7 @@ echo "
 .order-products h4 {
     color: #2c3e50;
     margin-bottom: 10px;
+    font-size: 1.5em;
 }
 
 .product-item {
@@ -221,6 +222,11 @@ echo "
 .modal-content button[type="submit"]:hover {
     background-color: #cc0000;
     transform: translateY(-2px);
+}
+
+.product-info p {
+    margin: 5px 0;
+    font-size: 1.3em;
 }
 </style>
 
