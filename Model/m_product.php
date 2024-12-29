@@ -119,5 +119,27 @@ class Product extends Database
         }
         return array();
     }
+
+    public function get_related_products($productID, $CategoryID, $limit = 4) {
+        $sql = "SELECT * FROM Product 
+                WHERE Category_ID = ? 
+                AND Product_ID != ? 
+                ORDER BY RAND() 
+                LIMIT ?";
+                
+        $this->set_query($sql);
+        $this->bind_params("iii", $CategoryID, $productID, $limit);
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            $related_products = array();
+            
+            while ($row = $result->fetch_assoc()) {
+                $related_products[] = $row;
+            }
+            return $related_products;
+        }
+        return [];
+    }
 }
 ?>
