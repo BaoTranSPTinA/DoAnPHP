@@ -103,5 +103,21 @@ class Product extends Database
             return [];  // Trả về mảng rỗng nếu câu truy vấn thất bại
         }
     }
+    public function search_products($keyword) {
+        $keyword = "%{$keyword}%";
+        $sql = "SELECT * FROM Product WHERE Product_Name LIKE ?";
+        $this->set_query($sql);
+        $this->bind_params("s", $keyword);
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            $products = array();
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+            return $products;
+        }
+        return array();
+    }
 }
 ?>

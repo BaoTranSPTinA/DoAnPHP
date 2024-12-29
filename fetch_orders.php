@@ -34,6 +34,28 @@ foreach ($orders as $order) {
     echo "<p>Tổng tiền: " . number_format($order['Total_Amount']) . " VNĐ</p>";
     echo "<p>Địa chỉ giao hàng: " . $order['Ship_Address'] . "</p>";
     echo "</div>";
+
+    // Lấy chi tiết sản phẩm trong đơn hàng
+    $orderDetails = $detail->get_details_by_order($order['Order_ID']);
+    if (!empty($orderDetails)) {
+        echo "<div class='order-products'>";
+        echo "<h4>Sản phẩm đã đặt:</h4>";
+        foreach ($orderDetails as $item) {
+            $productInfo = $product->getProductData($item['Product_ID']);
+            if ($productInfo) {
+                echo "<div class='product-item'>";
+                echo "<img src='" . substr($productInfo['avatar'], 3) . "' alt='" . $productInfo['Product_Name'] . "'>";
+                echo "<div class='product-info'>";
+                echo "<p class='product-name'>" . $productInfo['Product_Name'] . "</p>";
+                echo "<p class='product-quantity'>Số lượng: " . $item['Quantity'] . "</p>";
+                echo "<p class='product-price'>Giá: " . number_format($productInfo['Price']) . " VNĐ</p>";
+                echo "</div>";
+                echo "</div>";
+            }
+        }
+        echo "</div>";
+    }
+    
     echo "</div>";
 }
 echo "</div>";
@@ -68,6 +90,46 @@ echo "</div>";
     color: #7f8c8d;
     margin: 5px 0;
     font-size: 0.9em;
+}
+
+.order-products {
+    padding-top: 15px;
+}
+
+.order-products h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-name {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.product-quantity, .product-price {
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin: 2px 0;
 }
 
 .no-orders {

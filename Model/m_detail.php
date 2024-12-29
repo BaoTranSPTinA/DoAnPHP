@@ -30,6 +30,21 @@
         $this->execute_query();
 
     }
+    public function get_details_by_order($OrderID) {
+        $sql = "SELECT * FROM detail WHERE Order_ID = ?";
+        $this->set_query($sql);
+        $this->bind_params("i", $OrderID);
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            $details = array();
+            while ($row = $result->fetch_assoc()) {
+                $details[] = $row;
+            }
+            return $details;
+        }
+        return array();
+    }
 
    }
 ?>
