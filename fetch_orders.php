@@ -30,7 +30,10 @@ foreach ($orders as $order) {
     echo "<div class='order-header'>";
     echo "<h3>Đơn hàng #" . $order['Order_ID'] . "</h3>";
     echo "<p>Ngày đặt: " . $order['create_time'] . "</p>";
-    echo "<p>Trạng thái: " . $order['Order_Status'] . "</p>";
+    echo "<p>Trạng thái: <span class='order-status'>" . $order['Order_Status'] . "</span></p>";
+    if ($order['Order_Status'] == 'Pending') {
+        echo "<button class='cancel-order-btn' onclick='showCancelModal(" . $order['Order_ID'] . ")'><i class='fas fa-pencil-alt'></i> Muốn Hủy/ Thay đổi thông tin đơn hàng</button>";
+    }
     echo "<p>Tổng tiền: " . number_format($order['Total_Amount']) . " VNĐ</p>";
     echo "<p>Địa chỉ giao hàng: " . $order['Ship_Address'] . "</p>";
     echo "</div>";
@@ -55,11 +58,26 @@ foreach ($orders as $order) {
         }
         echo "</div>";
     }
-    
     echo "</div>";
 }
 echo "</div>";
+
+// Thêm modal hủy đơn hàng
+echo "
+<div id='cancelModal' class='modal'>
+    <div class='modal-content'>
+        <span class='close'>&times;</span>
+        <h3>Lý do hủy đơn hàng</h3>
+        <form id='cancelForm'>
+            <input type='hidden' id='orderIdToCancel' name='orderId'>
+            <textarea id='cancelReason' name='reason' required></textarea>
+            <button type='submit'>Xác nhận</button>
+        </form>
+    </div>
+</div>";
 ?>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
 .orders-list {
@@ -112,30 +130,139 @@ echo "</div>";
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 4px;
-    margin-right: 15px;
 }
 
-.product-info {
-    flex: 1;
+.cancel-order-btn {
+    background-color: #007bff; /* Màu xanh dương */
+    color: white;
+    border: none;
+    padding: 8px 15px; /* Kích thước nút */
+    border-radius: 20px; /* Độ bo tròn */
+    font-size: 14px; /* Kích thước font */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Khoảng cách giữa icon và text */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.product-name {
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 5px;
+.cancel-order-btn:hover {
+    background-color: #0056b3; /* Màu xanh dương đậm khi hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
-.product-quantity, .product-price {
-    color: #7f8c8d;
-    font-size: 0.9em;
-    margin: 2px 0;
+.cancel-order-btn i {
+    font-size: 18px; /* Kích thước icon */
 }
 
-.no-orders {
-    text-align: center;
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
     padding: 20px;
-    color: #7f8c8d;
-    font-size: 1.1em;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+#cancelReason {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+}
+
+#cancelReason:focus {
+    border-color: #ff4444;
+    outline: none;
+}
+
+.modal-content button[type="submit"] {
+    background-color: #ff4444;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
 }
 </style>
+
+<script>
+var modal = document.getElementById('cancelModal');
+var span = document.getElementsByClassName('close')[0];
+
+function showCancelModal(orderId) {
+    document.getElementById('orderIdToCancel').value = orderId;
+    modal.style.display = 'block';
+}
+
+span.onclick = function() {
+    modal.style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+}
+
+document.getElementById('cancelForm').onsubmit = function(e) {
+    e.preventDefault();
+    var orderId = document.getElementById('orderIdToCancel').value;
+    var reason = document.getElementById('cancelReason').value;
+    
+    fetch('Controller/c_cancel_order.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'orderId=' + orderId + '&reason=' + encodeURIComponent(reason)
+    })
+    .then(response => response.text())
+    .then(data => {
+        alert('Cửa hàng sẽ cập nhật trong thời gian sớm nhất');
+        modal.style.display = 'none';
+        location.reload();
+    });
+}
+</script>

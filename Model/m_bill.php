@@ -75,5 +75,17 @@ class Bill extends Database
             return array(); // Return empty array if query fails
         }
     }
+
+    public function get_bill_by_id($id) {
+        $sql = "SELECT * FROM bill WHERE Order_ID = ?";
+        $this->set_query($sql);
+        $this->bind_params("i", $id);
+        
+        if ($this->execute_query()) {
+            $result = $this->stmt->get_result();
+            return $result->fetch_assoc();
+        }
+        return null;
+    }
 }
 ?>

@@ -20,25 +20,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $db = new Database();
 
-    // Chèn dữ liệu vào bảng User
-    $sql = "INSERT INTO User (Customer_Name, username, Password, Email, Phone_Number, Address, Role) 
-            VALUES ('$Customer_Name', '$username', '$Password', '$Email', '$Phone_Number', '$Address', $Role)";
-    if (!$db->conn->query($sql)) {
-        die("Lỗi khi thực thi câu lệnh SQL: " . $db->conn->error);
+    try {
+        // Bắt đầu transaction
+        $db->conn->begin_transaction();
+
+        // Chèn dữ liệu vào bảng User
+        $sql = "INSERT INTO User (Customer_Name, username, Password, Email, Phone_Number, Address, Role) 
+                VALUES ('$Customer_Name', '$username', '$Password', '$Email', '$Phone_Number', '$Address', $Role)";
+        if (!$db->conn->query($sql)) {
+            throw new Exception("Lỗi khi thực thi câu lệnh SQL: " . $db->conn->error);
+        }
+
+        $Customer_ID = $db->conn->insert_id;
+
+        // Chèn dữ liệu vào bảng UserInformation
+        $sqlInfo = "INSERT INTO UserInformation (Customer_ID, Address, DateOfBirth, Gender) 
+                    VALUES ($Customer_ID, '$Address', '$DateOfBirth', '$Gender')";
+        if (!$db->conn->query($sqlInfo)) {
+            throw new Exception("Lỗi khi thực thi câu lệnh SQL: " . $db->conn->error);
+        }
+
+        // Commit transaction nếu mọi thứ OK
+        $db->conn->commit();
+        
+        // Đóng kết nối
+        $db->conn->close();
+
+        header("Location: ../signin.php");
+        exit();
+    } catch (Exception $e) {
+        // Rollback nếu có lỗi
+        $db->conn->rollback();
+        echo $e->getMessage();
+        // Đóng kết nối
+        $db->conn->close();
+        exit();
     }
-
-    $Customer_ID = $db->conn->insert_id;
-
-    // Chèn dữ liệu vào bảng UserInformation
-    $sqlInfo = "INSERT INTO UserInformation (Customer_ID, Address, DateOfBirth, Gender) 
-                VALUES ($Customer_ID, '$Address', '$DateOfBirth', '$Gender')";
-    if (!$db->conn->query($sqlInfo)) {
-        die("Lỗi khi thực thi câu lệnh SQL: " . $db->conn->error);
-    }
-
-    $db->close();
-
-    header("Location: ../signin.php");
-    exit();
 }
 ?>
