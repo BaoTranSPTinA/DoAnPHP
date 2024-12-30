@@ -51,7 +51,7 @@ if (isset($_SESSION['Role'])) {
             <?php foreach ($products as $product): ?>
             <div class="box">
                 <div class="icons">
-                    <a href="cart.php" class="fas fa-shopping-cart"></a>
+                    <a href="product_detail.php?id=<?php echo $product['Product_ID']; ?>" class="fas fa-shopping-cart"></a>
                     <a href="#" class="fas fa-heart"></a>
                     <a href="product_detail.php?id=<?php echo $product['Product_ID']; ?>" class="fas fa-eye"></a>
                 </div>

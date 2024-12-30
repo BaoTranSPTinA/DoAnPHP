@@ -54,7 +54,7 @@ $categories = $category->list_all_category();  // Get all categories from the da
 <div class="search-form">
     <form action="search.php" method="GET">
         <input type="search" name="keyword" id="search-box" placeholder="Tìm kiếm sản phẩm...">
-        <button type="submit"><i class="fas fa-search"></i></button>
+        <button type="button" id="close-search" class="close-btn">&times;</button>
     </form>
 </div>
 
@@ -235,6 +235,20 @@ $categories = $category->list_all_category();  // Get all categories from the da
 #search-btn:hover {
     color: #222;
 }
+.search-form .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    background: none;
+    border: none;
+}
+
+.search-form .close-btn:hover {
+    color: #b43f11;
+}
 </style>
 
 <script>
@@ -253,5 +267,8 @@ document.addEventListener('DOMContentLoaded', function() {
             searchForm.classList.remove('active');
         }
     });
+    document.getElementById('close-search').addEventListener('click', () => {
+    document.querySelector('.search-form').classList.remove('active');
+});
 });
 </script>

@@ -131,7 +131,7 @@ if (isset($_SESSION['Role'])) {
                     <div class="icons">
                         <a href="product_detail.php?id=<?php echo $product['Product_ID']; ?>" class="fas fa-shopping-cart"></a>
                         <a href="#" class="fas fa-heart"></a>
-                        <a href="#" class="fas fa-eye"></a>
+                        <a href="product_detail.php?id=<?php echo $product['Product_ID']; ?>" class="fas fa-eye"></a>
                     </div>
                     <div class="img">
                         <?php
