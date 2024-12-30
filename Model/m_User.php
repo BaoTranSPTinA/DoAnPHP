@@ -14,10 +14,17 @@
 
     public function delete_1_User($CustomerName)
     {
-        $sql = "DELETE FROM User WHERE Customer_Name = '$CustomerName'";
-        $this->set_query($sql);
+        // Xóa thông tin từ bảng UserInformation trước
+        $sql_info = "DELETE FROM UserInformation WHERE Customer_ID IN (SELECT Customer_ID FROM User WHERE Customer_Name = ?)";
+        $this->set_query($sql_info);
+        $this->bind_params("s", $CustomerName);
         $this->execute_query();
 
+        // Sau đó xóa từ bảng User
+        $sql_user = "DELETE FROM User WHERE Customer_Name = ?";
+        $this->set_query($sql_user);
+        $this->bind_params("s", $CustomerName);
+        $this->execute_query();
     }
 
     public function update_1_user($id, $CustomerName, $Username, $Password, $Email, $PhoneNumber, $Address)

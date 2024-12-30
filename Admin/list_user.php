@@ -134,7 +134,7 @@ button:hover {
                                 <td><?php echo "{$c_user['Customer_ID']}" ?></td>
                                 <td> <?php echo "{$c_user['Customer_Name']}" ?></td>
                                 <td><?php echo "{$c_user['username']}" ?> </td>
-                                <td> <?php echo "{$c_user['Password']}" ?></td>
+                                <td> <?php echo str_repeat("*", strlen($c_user['Password'])); ?></td>
                                 <td> <?php echo "{$c_user['Email']}" ?></td>
                                 <td>  <?php echo "{$c_user['Phone_Number']}" ?> </td>
                                 <td> <?php echo "{$c_user['Address']}" ?> </td>

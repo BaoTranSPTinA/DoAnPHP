@@ -19,7 +19,7 @@ class Database
         }
     }
 
-    // Thiết lập câu lệnh SQL
+    
     public function set_query($sql)
     {
         $this->query = $sql;
@@ -33,7 +33,7 @@ class Database
         }
     }
 
-    // Liên kết tham số với câu lệnh SQL
+    
     public function bind_params($types, ...$params)
     {
         if ($this->stmt) {
@@ -41,7 +41,7 @@ class Database
         }
     }
 
-    // Thực thi câu lệnh SQL
+   
     public function execute_query()
     {
         if ($this->stmt) {
@@ -50,7 +50,7 @@ class Database
         return false;
     }
 
-    // Lấy kết quả trả về từ câu lệnh SELECT
+    
     public function fetch_row()
     {
         if ($this->stmt) {
@@ -68,13 +68,13 @@ class Database
         return [];
     }
 
-    // Lấy ID của bản ghi mới được chèn vào
+    
     public function get_last_insert_id()
     {
         return $this->conn->insert_id;
     }
 
-    // Lấy lỗi cuối cùng trong kết nối hoặc câu lệnh SQL
+
     public function get_last_error()
     {
         if ($this->stmt) {
@@ -83,19 +83,19 @@ class Database
         return $this->conn->error;
     }
 
-    // Mở giao dịch (transaction)
+    
     public function begin_transaction()
     {
         $this->conn->begin_transaction();
     }
 
-    // Cam kết giao dịch (commit)
+   
     public function commit_transaction()
     {
         $this->conn->commit();
     }
 
-    // Hủy bỏ giao dịch (rollback)
+    
     public function rollback_transaction()
     {
         $this->conn->rollback();

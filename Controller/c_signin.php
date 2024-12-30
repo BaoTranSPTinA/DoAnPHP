@@ -43,7 +43,8 @@ if ($result->num_rows > 0) {
         exit();
     } else {
         // Nếu mật khẩu sai
-        echo "Sai tên đăng nhập hoặc mật khẩu.";
+        header("Location: ../signin.php?error=Sai tên đăng nhập hoặc mật khẩu");
+        exit();
     }
 } else {
     // Nếu không tìm thấy tài khoản
@@ -52,5 +53,5 @@ if ($result->num_rows > 0) {
 
 // Đóng kết nối
 $stmt->close();
-$db->close();
+$db->conn->close();
 ?>

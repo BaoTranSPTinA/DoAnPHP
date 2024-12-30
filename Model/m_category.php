@@ -46,7 +46,7 @@
             }
         }
 
-        // Get category by ID
+        
         public function get_category_by_id($id)
         {
             $sql = "SELECT * FROM Category WHERE Category_ID = '$id'";
@@ -57,14 +57,14 @@
                 if ($result->num_rows > 0) {
                     return $result->fetch_assoc();
                 } else {
-                    return null;  // Category not found
+                    return null;  
                 }
             } else {
                 return null;
             }
         }
 
-        // Get products by category ID
+        
         public function get_products_by_category($CategoryID)
         {
             $sql = "SELECT * FROM Product WHERE Category_ID = '$CategoryID'";

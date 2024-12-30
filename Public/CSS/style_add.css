@@ -2,22 +2,22 @@ body {
     margin: 0;
     padding-top: 35px;
     font-family: Arial, sans-serif;
-    background-color: #4c1d0f; /* Nền tối tạo sự đồng bộ */
-    color: #f5f5f5; /* Màu chữ sáng để dễ đọc */
+    background-color: #4c1d0f; 
+    color: #f5f5f5; 
 }
 
 .form-container {
-    background-color: #4c1d0f; /* Nền đồng bộ */
+    background-color: #4c1d0f; 
     padding: 50px 20px;
 }
 
 .form-control {
     width: 100%;
-    height: 45px; /* Chiều cao đồng đều */
+    height: 45px; 
     font-size: 18px;
-    border: 2px solid #f5f5f5; /* Viền trắng rõ nét */
-    background-color: transparent; /* Nền trong suốt */
-    color: #f5f5f5; /* Màu chữ sáng */
+    border: 2px solid #f5f5f5; 
+    background-color: transparent; 
+    color: #f5f5f5; 
     padding: 10px;
     margin-bottom: 20px;
 }
@@ -36,7 +36,7 @@ body {
     color: #f5f5f5;
     margin-bottom: 10px;
     display: block;
-    text-align: left; /* Canh trái cho label */
+    text-align: left; 
 }
 
 .message {
@@ -46,12 +46,12 @@ body {
 }
 
 .message a {
-    color: #ffc107; /* Màu link vàng */
+    color: #ffc107; 
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .message a:hover {
-    color: #e0a800; /* Màu vàng đậm hơn */
+    color: #e0a800; 
     text-decoration: underline;
 }

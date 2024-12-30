@@ -62,18 +62,35 @@ body {
 
 .signup p{
     text-align: center;
-    decoration: none;
+    text-decoration: none;
 
 }
 
 .signup a{
     color: #A13C1E;
 }
+.error-message {
+    color: #ff0000;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+    border: 1px solid #ff0000;
+}
 </style>
 
 <body>
     <div class = "login-container">
 <h1><center>ĐĂNG NHẬP TÀI KHOẢN</center></h1><br>
+
+<?php
+if(isset($_GET['error'])) {
+    echo '<div class="error-message">' . htmlspecialchars($_GET['error']) . '</div>';
+}
+?>
+
 <form method="POST" action="Controller/c_signin.php">
     <input type="text" name="UserName" placeholder = "Tên đăng nhập" required><br>
     <input type="password" name="Password" placeholder = "Mật khẩu" required><br>

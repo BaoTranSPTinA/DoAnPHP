@@ -1,17 +1,13 @@
 <?php
-        require('../model/m_user.php');
+require('../model/m_user.php');
 
-        session_start();
-        $CustomerName = $_POST['CustomerName'];
-    
-        $new_building = new User();
-        $new_building->delete_1_User($CustomerName);
-        
-
-
- 
+session_start();
+try {
+    $CustomerName = $_POST['CustomerName'];
+    $user = new User();
+    $user->delete_1_User($CustomerName);
+    echo "<script>window.close();</script>";
+} catch (Exception $e) {
+    echo "Lỗi khi xóa người dùng: " . $e->getMessage();
+}
 ?>
-
-<script>
-        window.close();
-</script>

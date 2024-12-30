@@ -44,16 +44,16 @@ class Bill extends Database
         $this->set_query($sql);
 
         if ($this->execute_query()) {
-            $result = $this->stmt->get_result(); // Sử dụng get_result để lấy kết quả
+            $result = $this->stmt->get_result(); 
             $list_bill = array();
 
             while ($row = $result->fetch_assoc()) {
                 $list_bill[] = $row;
             }
 
-            return $list_bill; // Trả về danh sách hóa đơn
+            return $list_bill; 
         } else {
-            die("Lỗi truy vấn: " . $this->get_last_error()); // In ra lỗi nếu có
+            die("Lỗi truy vấn: " . $this->get_last_error()); 
         }
     }
 
@@ -72,7 +72,7 @@ class Bill extends Database
             
             return $bills;
         } else {
-            return array(); // Return empty array if query fails
+            return array(); 
         }
     }
 

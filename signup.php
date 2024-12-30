@@ -70,7 +70,7 @@ body {
 
 .signup p{
     text-align: center;
-    decoration: none;
+    text-decoration: none;
 
 }
 
