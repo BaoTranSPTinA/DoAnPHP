@@ -45,7 +45,6 @@ $categories = $category->list_all_category();  // Get all categories from the da
         <a href="watch_cart.php"><div id="cart-btn" class="fas fa-shopping-cart"></div></a>
 
         <?php if (isset($_SESSION['username'])): ?> 
-            <!-- Nếu đã đăng nhập, hiển thị tên người dùng và liên kết tới trang thông tin cá nhân -->
             <a href="profile.php">
                 <span class="user-name" style="font-size: 1.8rem; color: white; margin-left: 20px;">
                     <?php echo $_SESSION['Customer_name']; ?>
@@ -54,6 +53,13 @@ $categories = $category->list_all_category();  // Get all categories from the da
             <a href="Controller/c_signout.php"><div id="login-btn" class="fas fa-sign-out-alt"></div></a> 
         <?php endif; ?>
     </div>
+
+    <div class="search-form">
+    <form action="search.php" method="GET">
+        <input type="search" name="keyword" id="search-box" placeholder="Tìm kiếm sản phẩm...">
+        <button type="button" id="close-search" class="close-btn">&times;</button>
+    </form>
+</div>
 </header>
 
 <style>
@@ -172,4 +178,100 @@ $categories = $category->list_all_category();  // Get all categories from the da
     min-width: 15px;
     text-align: center;
 }
+.search-form {
+    position: fixed;
+    top: -110%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1004;
+    background: rgba(0, 0, 0, .8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+    transition: .4s linear;
+}
+
+.search-form.active {
+    top: 0;
+}
+
+.search-form form {
+    width: 50rem;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-form form input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+    border: 1px solid #ddd;
+    border-radius: .3rem;
+}
+
+.search-form form button {
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--brown);
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.search-form form button:hover {
+    color: #222;
+}
+
+#search-btn {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#search-btn:hover {
+    color: #222;
+}
+.search-form .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    background: none;
+    border: none;
+}
+
+.search-form .close-btn:hover {
+    color: #b43f11;
+}
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchBtn = document.querySelector('#search-btn');
+    const searchForm = document.querySelector('.search-form');
+    
+    // Hiển thị form tìm kiếm khi click vào nút search
+    searchBtn.addEventListener('click', () => {
+        searchForm.classList.toggle('active');
+    });
+    
+    // Đóng form tìm kiếm khi click ra ngoài
+    document.addEventListener('click', (e) => {
+        if (!searchForm.contains(e.target) && e.target !== searchBtn) {
+            searchForm.classList.remove('active');
+        }
+    });
+    document.getElementById('close-search').addEventListener('click', () => {
+    document.querySelector('.search-form').classList.remove('active');
+});
+});
+</script>
